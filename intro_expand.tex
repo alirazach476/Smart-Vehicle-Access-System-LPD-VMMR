@@ -1,0 +1,24 @@
+% --- Expanded introduction material (context, standards, evaluation protocol) ---
+\subsection{Standards and Interoperability Context}
+Intelligent transportation systems (ITS) increasingly rely on IP cameras with ONVIF profiles for discovery and streaming. While this project focuses on offline notebook and REST prototypes, production rollouts should document time synchronization (NTP/PTP), TLS for API endpoints, and mutual authentication between edge agents and policy servers.
+
+\subsection{Evaluation Protocol and Metric Definitions}
+Unless otherwise stated, accuracy denotes Top-1 classification accuracy for VMMR. Macro-averaged precision, recall, and F1 treat each class equally regardless of support, which is informative under long-tail distributions. False positive rate (FPR) per class is derived from the confusion matrix as $\mathrm{FPR}_k = \mathrm{FP}_k / (\mathrm{FP}_k + \mathrm{TN}_k)$, then averaged macroscopically as reported in the training notebook.
+
+\subsection{Repository Fidelity Statement}
+All quantitative VMMR metrics quoted herein are copied from executed training and testing notebook outputs. License plate \emph{detection} metrics (precision, recall, mAP@0.5, mAP@0.5:0.95) are transcribed from the archived LPD run at epoch~50. Training requested a 380-pixel square input; Ultralytics rounds to $384\times384$ during optimization. Digit--letter \emph{detection} metrics for stage~(ii) are transcribed at epoch~100; because the public character export contains only a training split, the training recipe mirrors that pool for validation (Section~\ref{subsec:lpchar}). End-to-end string accuracy for the two-stage LPR stack under fog/rain branches and wall-clock timing tables remain pending consolidated benchmarks.
+
+\subsection{Contributions Revisited in Operational Terms}
+Beyond algorithmic novelty, the repository contributes an integration narrative: restoration operators are placed \emph{before} YOLO inference to respect the assumption that detectors were trained on naturalistic degradations but may still benefit from reduced streak energy and improved global contrast. The dual-head decision logic (string plus fine-grained class) is staged for security review even when the dashboard currently simulates arrivals.
+
+\subsection{All-Weather Scope Clarification}
+``All-weather'' in the title reflects the project goal and the implemented fog and rain pathways. Snow, dense smog, and motion blur at highway speeds remain future engineering items; the discussion section enumerates them candidly.
+
+\subsection{Ethical Use of Surveillance Analytics}
+Automated plate reading intersects with expectations of privacy in semi-public campuses. The authors recommend signage, purpose limitation, role-based access to logs, and periodic third-party audits when deploying derived systems.
+
+\subsection{Comparison to Manual Gate Operations}
+Human guards integrate contextual cues (vehicle damage, occupant behavior) that cameras omit. Automated systems should therefore maintain human-in-the-loop escalation for \textsc{alert} states rather than fully autonomous enforcement in high-risk sites.
+
+\subsection{Outline of Experimental Limitations}
+Controlled ablations (e.g., toggling CLAHE clip limit, ablating Telea inpainting) are not fully tabulated in the repository snapshot; the results section therefore emphasizes final-system metrics where available and marks ablations as future work.

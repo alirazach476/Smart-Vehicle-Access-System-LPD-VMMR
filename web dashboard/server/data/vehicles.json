@@ -1,0 +1,38 @@
+{
+  "vehicles": [
+    {
+      "id": 4,
+      "licensePlate": "AS82",
+      "make": "ss",
+      "model": "ss22",
+      "ownerName": "sk",
+      "notes": "",
+      "accessType": "deny",
+      "entryTime": null,
+      "expiry": null,
+      "photo": "/uploads/vehicles/vehicle_1763368935045_o8fjb4qnwu9.jpg",
+      "addedBy": 1,
+      "role": "admin",
+      "createdAt": "2025-11-17T08:42:15.139Z",
+      "updatedAt": "2025-11-17T08:42:15.140Z"
+    },
+    {
+      "id": 3,
+      "licensePlate": "AS",
+      "make": "qwwq",
+      "model": "88",
+      "ownerName": "q",
+      "notes": "",
+      "accessType": "allow",
+      "entryTime": null,
+      "expiry": null,
+      "photo": "/uploads/vehicles/vehicle_1763368903196_ux2r3zly1ig.jpg",
+      "addedBy": 1,
+      "role": "admin",
+      "createdAt": "2025-11-17T08:41:43.232Z",
+      "updatedAt": "2025-11-17T08:41:43.232Z"
+    }
+  ],
+  "nextVehicleId": 5,
+  "lastUpdated": "2025-11-17T08:42:15.140Z"
+}

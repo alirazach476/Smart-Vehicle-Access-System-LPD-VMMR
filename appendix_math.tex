@@ -1,0 +1,39 @@
+\section{Supplementary Mathematical Notes}
+\label{app:math}
+This appendix records derivations and identities referenced implicitly throughout the theoretical background. It is included to support reproducible engineering decisions (e.g., why LAB separation matters for CLAHE, and how transmission maps relate to Koschmieder visibility).
+
+\subsection{Koschmieder Visibility and Airlight}
+Under homogeneous attenuation with extinction coefficient $\beta$, the apparent radiance of a distant object obeys $L(d)=L_\infty (1-e^{-\beta d}) + A e^{-\beta d}$, where $A$ is airlight and $L_\infty$ is the intrinsic object radiance. Visibility $V$ is often defined as the distance at which contrast drops below a threshold, yielding an approximate inverse relationship between $V$ and $\beta$. Dark-channel dehazing estimates a pixel-wise transmission $t(x)$ related to relative depth and $\beta$ along lines of sight.
+
+\subsection{Dark-Channel Algebraic Steps}
+Given color channels $I_c$ for $c\in\{R,G,B\}$, the dark channel is $I_{\mathrm{dark}}(x)=\min_c \min_{y\in\Omega(x)} I_c(y)$ with local patch $\Omega$. Atmospheric light $A$ is estimated from the brightest intensities in the top fraction of darkest locations. A coarse transmission follows $t(x)=1-\omega\, I_{\mathrm{dark}}(x)/A$ with $\omega\in(0,1]$ to retain a small amount of haze for naturalness. The repository uses guided filtering to refine $t$ on the grayscale guide for edge alignment.
+
+\subsection{LAB Color Space Jacobian Intuition}
+Let $(L,a,b)$ denote LAB channels. Small perturbations in $L$ primarily affect luminance perception, while $a,b$ encode opponent chromatic axes. Applying CLAHE only on $L$ reduces cross-channel bleeding relative to applying histogram equalization independently on RGB channels, which can distort perceived hue.
+
+\subsection{Gamma Curve Curvature}
+The second derivative of $g(u)=u^{1/\gamma}$ with respect to $u\in[0,1]$ is $g''(u)=\tfrac{1}{\gamma}(\tfrac{1}{\gamma}-1)u^{1/\gamma-2}$. For $\gamma<1$, the curve is convex-up in log-log coordinates, boosting mid-tones; for $\gamma>1$, mid-tones compress. The fog pipeline clips $\gamma$ to $[0.6,1.8]$ after computing a data-driven exponent from mean gray.
+
+\subsection{Vertical Median as Minimax under Impulse Noise}
+Median filtering minimizes the $\ell_1$ loss to a constant predictor within each window under salt-and-pepper noise models; oriented median stacks approximate streak suppression when streak directions align with the filtering axis.
+
+\subsection{Telea Inpainting Local Formulation (Sketch)}
+Telea's fast marching method propagates known boundary values along normals into unknown regions by combining isophote direction and gradient strength; the OpenCV implementation exposes a radius parameter (set to 3 in the rain spot inpainting stage) controlling locality of the fill.
+
+\subsection{Softmax and Cross-Entropy with Label Smoothing}
+Let logits be $z\in\mathbb{R}^K$, softmax $p_i=e^{z_i}/\sum_j e^{z_j}$, and smoothed targets $q_i=(1-\epsilon)\,\mathbf{1}[i=y]+\epsilon/K$. The cross-entropy $-\sum_i q_i\log p_i$ penalizes overconfident spikes when $\epsilon>0$, improving generalization in many large-scale classifiers.
+
+\subsection{Macro versus Micro Averaging}
+Micro-averaged metrics aggregate counts globally and can be dominated by head classes. Macro averages compute per-class metrics and average with equal weight, which better reflects tail behavior in fine-grained VMMR with 245 classes.
+
+\subsection{Compound Scaling Constraint Recap}
+EfficientNet chooses $\alpha,\beta,\gamma$ and searches a baseline depth multiplier $\phi$ such that memory and FLOP budgets are respected. B4 represents a middle-high capacity point favorable when GPU memory exceeds mobile phones but remains bounded on Colab GPUs.
+
+\subsection{Two-Stage YOLO Information Flow}
+Let $f_{\mathrm{plate}}$ produce boxes $B=\{b_m\}$; in this project $f_{\mathrm{plate}}$ is the YOLOv8n LPD trained on Roboflow v1 with validation mAP@0.5 reported in Table~\ref{tab:lpdmetrics}. For each crop $I|_{b_m}$, $f_{\mathrm{char}}$ is the YOLOv8n 38-class detector trained on Roboflow \emph{My First Project} version~4 with aggregate box metrics in Table~\ref{tab:lpcharmetrics}. It predicts character boxes $\{c_n\}$ with classes. Reading order sorts centers along $x$, yielding a sequence decoded by the formatter. Error modes include missed $B$ (false negative localization), merged characters (low NMS threshold), and swapped digits/letters under motion blur.
+
+\subsection{Expected Calibration Error Definition}
+Partition predicted probabilities into bins $\{B_m\}$; ECE is $\sum_m \frac{|B_m|}{N}\,|\mathrm{acc}(B_m)-\mathrm{conf}(B_m)|$. Lower ECE indicates better alignment between stated confidence and empirical correctness.
+
+\subsection{Summary}
+These notes bridge physical optics, image processing, and classifier training objectives. They are not novel theoretical claims but consolidate textbook relationships useful for FYP examination boards reviewing design rationale.

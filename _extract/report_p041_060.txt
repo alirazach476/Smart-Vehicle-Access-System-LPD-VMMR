@@ -1,0 +1,491 @@
+\n===== PAGE 41 =====\n 
+27    
+    
+4.2.2 Testing Methodology     
+Evaluation process was done by the following three major phases: Unit Testing, Integration 
+Testing and Performance Testing. The modular design provided a good opportunity to test each 
+module and the whole system.    
+Unit Testing:  In addition to the model specific ones, qualitative end-to-end testing was conducted 
+on another set of images and video frames captured from the deployed Orange Pi camera setup. 
+• Prior to the system integration, all the software components have been tested individually 
+for correctness and performance.    
+• A reserved test data set was used to test the YOLOv8n license plate detection model.  
+Precision, recall, and mean Average Precision (mAP@0.5) with a confidence threshold of 
+0.25 were used to evaluate the detection quality.    
+• The adaptive preprocessing module was used for the analysis of images in which bad 
+weather (such as night lighting, rain and fog) caused image degradation. Original and 
+enhanced images were compared, and the level of improvement in readability of the plates 
+as well as visibility of the vehicles was determined.    
+• The results of character and digit detection model YOLOv8n were analyzed on cropped 
+License Plate Regions. The individual character detection accuracy and the overall plate 
+reconstruction accuracy following post processing was used to measure performance.    
+• Vehicle classification model EfficientNet-B4 was tested on the entire 17254image test set. 
+Different metrics of performance were taken into account including Top-1 accuracy, Top-
+5 accuracy, macro precision, macro recall and macro F1-score.    
+Integration Testing : After a successful validation of individual modules, the whole recognition 
+pipeline was tested as a single system.    
+• End-to-end testing was carried out with the images acquired under various weather and 
+illumination conditions. The aim was to see that the pre -processing, plate detection, 
+character recognition, vehicle classification and authorization components work properly.    
+• To validate the edge to cloud communication, the inference was tested on Orange Pi 5 Pro 
+and then confirm if the recognition result, authorization decision, and annotated image are 
+uploaded to the cloud based dashboard.    \n===== PAGE 42 =====\n 
+28    
+    
+• Different vehicle records were tested with authorization function (allow, deny and 
+temporary access). It was found that system decisions were compared to the expected 
+outcomes to be able to determine if access-control behavior was correct.    
+• Real-time image processing and event synchronization was monitored to ensure the 
+results of the recognition performed on the edge devices are reflected in the updates on 
+the dashboard.    
+Performance Testing : In addition to the model specific ones, qualitative end-to-end testing was 
+conducted on another set of images and video frames captured from the deployed Orange Pi 
+camera setup. 
+                4.3 Deploying and setting up the hardware.   
+  
+Model development and initial validation was done on a desktop workstation, whereas the whole 
+recognition system was ported to specialized edge devices for operation in the real world. The 
+deployment architecture was created based on edge-AI principles with all the heavy computational 
+inference workload being performed on -site and only light results being sent up to the cloud 
+services. The Orange Pi 5 Pro is equipped with three AI models: YOLOv8 license plate detector, 
+YOLOv8 character/digit recognition mod el, and EfficientNet -B4 vehicle make and model 
+classifier. Only processed data is uploaded to the cloud by the edge device, including the 
+recognized text on plates, predicted vehicle identity, confidence data, weather classification and 
+authorization statu s, time stamps and compressed image snapshots. With this architecture, 
+bandwidth usage is reduced, privacy is enhanced, and it enables the system to function even if the 
+connection is unreliable.          
+Carries out the entire AI recognition process including license plate recognition, character 
+recognition, vehicle classification and authorization processing.    
+• Makes all inferences locally – no cloud based AI computation required.    
+• Delivers enough processing power to allow real time gate monitoring and decision making.    
+• At average, processes about 1 image per second with CPU based inference.    \n===== PAGE 43 =====\n 
+29    
+    
+• Primary controller during live deployment demos & field tests.          
+USB Camera (1080p)          
+The Full HD USB camera is used for image acquisition and is directly connected to the Orange.   
+• Takes pictures of cars and frames of video at the gate entry point.    
+• Computes real-time visual data for the recognition pipeline.    
+Works in Live Operation or Batch Processing.    
+Supports real-time vehicle in/out tracking.          
+USB-C Power Supply (5V , 5A)          
+High current power supply designed to operate at stable currents over long running interference 
+workloads.    
+• Supplies power to the Orange Pi 5 Pro in a regulated manner.    
+• Allows running of multiple deep-learning models continuously.    
+• Helps prevent intermittent power outages caused by fluctuations and/or heavy power 
+demands.    
+• Helps to ensure system reliability for lengthy deployments.          
+• Network and Cloud Link.          
+• Wireless networking that is implemented with Wi -Fi between edge device and cloud 
+dashboard.    
+• All recognition events are sent secure over https connection.    
+• Only the compact results payloads are uploaded to the cloud.    \n===== PAGE 44 =====\n 
+30    
+    
+• The raw image streams, trained models and inferences calculations are stored on the local 
+device.    
+• After every recognition, Dashboard is automatically synced.          
+   
+Figure 4.3.1: Batch Image Processing and Authorization Log (48 Images, Orange Pi 5 Pro)    
+    
+This is a large-scale batch inference experiment on Orange Pi 5 Pro to test the realtime processing 
+capacity and stability of the system. The total number of vehicles images processed during the 
+experiment was 48. In every image, the system was able to cor rectly recognize the license plate, 
+classify the vehicle make and model, provide a confidence score and verify the authorization by 
+comparing the detected license plate with the registered vehicle database. Furthermore, the 
+processing time for every image was also measured to assess its inference performance on the 
+edge device. All the recognition results were automatically uploaded to the cloud dashboard for 
+monitoring and storage after completing the analysis, such as license plate number, predicted 
+vehicle class, confidence value, authorization status, timestamp and processing statistics. The 
+experiment was successfully completed without any processing interruption, upload failure or 
+synchronization problem, which shows the reliability, robustness, and scalability of the proposed 
+edge based vehicle recognition and access control system for continuous operation.  
+\n===== PAGE 45 =====\n 
+31    
+    
+    
+Figure 4.3.2 — Real-Time Video Frame Inference and Dashboard Synchronization (Orange Pi 5 Pro)    
+  
+This figure demonstrates the real -time video-frame processing performed on the Orange Pi edge 
+computing platform. Video frames captured by the surveillance camera are processed locally, where 
+vehicle detection, license plate recognition, and vehicle classi fication are executed without relying 
+on cloud-based inference. Once the recognition process is completed, the generated detection results 
+are instantly transmitted to the cloud dashboard through the network for real-time visualization and 
+storage. This experiment confirms the system's ability to maintain seamless synchronization between 
+edge-based processing and remote monitoring services. The results demonstrate efficient data 
+transmission, low-latency communication, and reliable real-time performance, ensuring continuous 
+monitoring and accurate vehicle access management.   
+\n===== PAGE 46 =====\n 
+32    
+    
+    
+Figure 4.3.3: Hardware Diagram    
+The overall hardware architecture of the proposed Vehicle recognition and Gate control system is 
+shown in this figure. It features a surveillance camera, an Orange Pi processing unit, network 
+infrastructure, a cloud-based dashboard and an automated gate-control mechanism. Images of the 
+vehicles are captured by the camera and sent to the Orange Pi for real time processing and 
+recognition. The processed result data is sent via the network to the cloud based dashboard for 
+monitoring, data storage and administration. Depending on the recognition result, the gate-control 
+unit is given commands to open or close the gate so that the vehicle can enter the site efficiently, 
+in security and in a fully automated manner.    
+\n===== PAGE 47 =====\n 
+33    
+    
+    
+Figure 4.3.4: Orange Pi Live Pipeline Demonstration (Plate LEB-1481)    
+Figure 4.3.4 illustrates a live deployment scenario in which the system successfully recognized 
+license plate LEB-1481 and completed full inference in approximately 846 milliseconds. 
+Following authorization evaluation, the resulting denied-access event was uploaded to the cloud 
+dashboard in real time, demonstrating the responsiveness of the deployed solution.    
+4.3.2 Pipeline Time:    
+    
+Table 4.1 — Edge AI Pipeline Latency Breakdown (Orange Pi CPU Inference)    
+Table 4.1 Displays the processing time of the key steps of the edge-AI pipeline. Experimental 
+measurement shows that the detection of license plate requires about  
+80-200ms to recognize the word, 30-100ms to recognize the character,   
+\n===== PAGE 48 =====\n 
+34    
+    
+It takes 200 -800 milliseconds to classify a vehicle. The whole pipeline (including 
+overhead for preprocessing, database verification and cloud synchronization) offers around 700 -
+1000 milliseconds endtoend latency per frame. These results meet with the project requirement of 
+a total processing time of less than 2 seconds and still achieve good recognition accuracy.    
+4.4 Web Dashboard Implementation          
+The Web Dashboard is an all -weather smart vehicle gate cloud -based monitoring, 
+administration and access-control application for proposed all-weather smart vehicle gate system. 
+It has been developed using current web technology stack consisting of both on the front end and 
+back end.    
+Node.js/Express backend. V ercel is where the application is deployed and it's connected 
+to the Orange Pi edge device via a wireless network connection. The results of the edge pipeline 
+(license plate text, vehicle make and model predictions, confidence sco re, weather data, 
+authorization decisions, time stamps, and compressed annotated image snapshots) are fed in real-
+time into the dashboard where they can be visualized and managed.    
+The frontend app offers a Live Feed interface, which continually displays the incoming 
+recognition events. Each of these events includes details of the license plate detected (image, type, 
+etc.), the class of vehicle predicted (car, truck, motorcycle, etc.), confidence values, environmental 
+sensing (weather, etc.) and access decision. The dashboard also offers details on gate status, 
+showing operators if a barrier is open or closed, following barrier authorization evaluation. 
+Administrators can use this interface to see the system in action and take action on any suspicious 
+or unusual events.    
+A separate administration module for vehicle registration and access management. The 
+system database can be populated with authorised vehicles, make and model details. Access 
+permissions can be limited to visitor temporary access, permanent deny access or permanent 
+access. Entries can be made for a specific period of time and only let visitors into the facility for 
+certain time periods. This gives flexibility and at the same time a strict system of access control.    
+The dashboard also has an event history that stores all the vehicle detections that have 
+been processed and is searchable for auditing and historical analysis purposes. Every entry 
+contains the results of the recognition, the results of the attempt to auth orize, the time of the 
+recognition and additional information from the inference process. Administrative users can view 
+these to see what has happened in the past, to investigate security matters, and to audit system 
+activity. In addition, there is a manua l override setting, allowing a person to assume full control 
+of the robot in cases where unusual situations arise which cannot be dealt with using automated 
+decision making.    
+A lightweight vehicle registry, based on JSON data format, is used to manage 
+recognition data, which is stored as permanent access -control records. Detection events are kept 
+in runtime to update user interface as quickly as possible. Communication between the frontend 
+and backend components is done via RESTful API with JSON Web Token (JWT) authentication. 
+This architecture guarantees that just legitimate users are able to access administrative functions 
+as well as sensitive car data.    \n===== PAGE 49 =====\n 
+35    
+    
+Cloud services integration with edge computing resources is an important aspect of the 
+system design. The Orange Pi 5 Pro is used to locally compute all the heavy tasks of AI inference 
+models, like license plate detection, character recognition, vehicle classification and authorization 
+evaluation. Only processed outputs go to the cloud dashboard, conserving bandwidth and 
+respecting user privacy. With this architecture, efficient monitoring and centralized management 
+are achieved with site deployment real-time performance.    
+The dashboard can also be used for actual gate -control application. The user interface 
+will show gate-open and gate-closed events from authorization decisions made by the recognition 
+pipeline. These decisions can also be tied to Orange Pi GPIO relay outputs, to directly actuate the 
+gate-control hardware if physical barrier automation is required. As such, the dashboard can be 
+used not only to monitor access but also as a part of the access-control solution.    
+The front end web application has been developed using React 18, TypeScript, Vite and 
+Tailwind CSS, the back end is based on a node and express rest API.  
+The app is hosted on Vercel, with a single page application (SPA) served on the front 
+end, and API endpoints on the back end that handle vehicle registration, event processing, user 
+authentication and access-control operations.    
+Vehicle registration records are stored in an in -memory data structure for low latency 
+updates and a JSON database file (vehicles.json) will contain the records while the system is 
+running. Role management is carried out with JWT and authentication and aut horisation is 
+implemented. There are two types of user roles: administrator and regular user. The admin has 
+more privileges (vehicle registration, user management, manual override, etc.) while normal users 
+have less privileges (operational monitoring, visitors).    
+For future scalability, the software architecture also features a Supabase PostgreSQL 
+Database schema that can deliver persistent cloud storage. The prototype deployed, however, is 
+simple and easy to deploy APIs based on express and file storage using json . The gate_sync.py 
+utility runs after the inference is completed, and uploads the recognition events to the ingestion 
+endpoint on the cloud platform to synchronize the Orange Pi and the cloud platform. This 
+mechanism will allow for the information availabl e on the dashboard to be consistent with the 
+activities on edge devices.    
+Key features:    
+1 Dashboard — Dashboard is the main dashboard and provides a real-time view of the 
+day to day activities of the gates. Vehicle detection, number of entries granted, number of entries 
+denied, gate status and environmental conditions are displayed. While Dashboard stat istics are 
+automatically updating at regular intervals for up to date operational awareness.    
+2. Live Feed  — Live Feed module displays a stream of recognition events received 
+from Orange Pi edge device which is continuously updated. They contain the information of the 
+detected vehicle license plate number, the predicted model and make of the vehicle, the confidence 
+score, the weather label, the authorization result and the time. Filtering can be used to show certain 
+types of events —such as authorized vehicles, denied vehicles, or temporary visitor entries. Of 
+course, there can also be an optional camera feed for added situational awareness.    \n===== PAGE 50 =====\n 
+36    
+    
+3. Vehicle History — The Vehicle History module keeps a searchable and paginated 
+history of gate events. Previous records can be retrieved by the operators for auditing, 
+investigation and performance analysis. Search capability enables events to be quickly looked up 
+by license plate, type of vehicle, time, or result of authorization.    
+Manual Override — Manual Override allows the administrator to take manual control 
+of the system if there are exceptional events. Registration of new vehicles, access rights, upload 
+of reference pictures and override of automatic gate decisions can be made by authorised persons 
+if necessary.    
+5. Add Temporary Visitor — Short term access authorization for visitors, contractors 
+and service personnel is provided by the Temporary Visitor module. Administrators can have 
+records of visitors, as well as different times/dates that the temporary permissions expire, so they 
+are only current during authorized access hours.    
+6.Weather — Environmental conditions are shown in the Dashboard to give contextual 
+information on recognition events. Parameters such as temperature, humidity and visibility 
+provide insight to the operators as to how the environment affects system performance and t he 
+preprocessing to be used.    
+7. Admin Access Privileges — Secure access to the administration of the platform 
+with the help of role based access management. Administrative users can increase the privilege 
+level of trusted operators, change their privileges or revoke them without compromising the 
+overall security of the system.    
+8. Settings  — The Settings module includes a number of parameters such as 
+notifications, display, camera integration and so on. These controls allow administrators to set 
+how the dashboard will act if needed in a deployment. All these modules form a complete 
+management platform with real -time monitoring and historical auditing, visitor administration, 
+manual intervention and secure gate-control. The dashboard will be used together with the Orange 
+Pi edge inference pipeline, to provide a comprehensive end-to-end solution for intelligent vehicle 
+access management..    \n===== PAGE 51 =====\n 
+37    
+    
+    
+Figure 4.4: Dual-Modality Access Control Flowchart      
+When an inference result that includes the plate number, make and model of the vehicle ocr and 
+the corresponding confidence scores are received on the backend API endpoint, the decision 
+making process shown in figure 4.4 is performed. A system check of the vehicle registry database 
+for a matching plate record is performed first. It then assesses the access policy given, which could 
+be granting or denying access to a visitor permanently or temporarily. Validity periods are checked 
+prior to additional process ing for temporary entries. Finally, the vehicle identity detected is 
+matched with the make and model information registered. Only when all the verification 
+conditions are met, access is granted, otherwise access is denied.    
+\n===== PAGE 52 =====\n 
+38    
+    
+          
+Figure 4.4.1 — Web Application Frontend Admin Panel        
+One sample vehicle detection event is shown in the proposed intelligent vehicle access control system via the 
+Live Feed interface as shown in Figure 4.4.3. In this instance, the Orange Pi processing unit managed to 
+capture the license plate of the vehicle, LEH-8357 and, at 85.1% confidence, determine the make and model of 
+that vehicle to be Suzuki Wagon R. Once the recognition process was done, the identified license plate was 
+automatically matched with the registered vehicle database to ascertain whether the vehicle was authorised to 
+come inside the premises. A matching record was found, and the system verified the vehicle as authorized and 
+automatically sent a gate-open command – no manual intervention required. The dashboard immediately 
+provided all necessary information such as the plate number, the vehicle make and model, the confidence level, 
+authorization or not, the time and the access decision. This real-time visualization enables operators to track 
+vehicle movements in real time, verify accuracy of vehicle recognition, and storage of an accurate event history  
+ 
+ 
+\n===== PAGE 53 =====\n 
+39    
+    
+ 
+ 
+Figure 4.4.2 — Web Application Frontend User Panel        
+The standard -user dashboard appears as shown in Figure 4.4.2, and is designed to offer key 
+monitoring capabilities and limit access to advanced administrative functions. The user interface 
+is different from the administrator dashboard, it will be a simplified navigation structure that will 
+be easier to use and will focus on day to day operations. Every standard user is able to view the 
+vehicle recognition events in real -time and access decisions made by the system, as well as the 
+vehicle verification status . The dashboard also allows users to register temporary visitors by 
+entering the necessary vehicle and visitor details and giving them access to the vehicle while not 
+changing the vehicle database. This role-based design guarantees that users are able to c arry out 
+day-to-day activities effectively while maintaining the system's protection and integrity. Normal 
+users still cannot access administrative functionalities like user management, system 
+configuration, database maintenance, and model settings. In sum mary, the standard -user 
+dashboard offers a safe, easy-to-navigate and efficient means of tracking vehicle activity.   
+    
+                               
+\n===== PAGE 54 =====\n 
+40    
+    
+               
+Figure 4.4.3 — Web Dashboard Detection Event Card (Plate LEH-8357, Suzuki Wagon R — Allowed)    
+Figure 4.4.3 shows an example of a vehicle detection event as shown by the Live Feed interface 
+of the proposed system. In the latter case, the Orange Pi processing unit could successfully read 
+and identify the car's license plate, LEH -8357, and classify it as a Suzuki Wagon R with 85.1% 
+confidence. Once the recognition process is done, the system automatically checks detected 
+license plate for its authorized status in the vehicle register database. The vehicle had been 
+recorded in the database and verification was marked as correct; the system also sent a gate-open 
+command, thus letting the vehicle in without manually switching the gate. The relevant data, such 
+as detected licence plate, predicted vehicle make and model, confidence level, authorised/not 
+authorised status and time were immediately displayed on the dashboard. The real -time event 
+visualization helps operators keep track of system activity, check the recognition results, and keep 
+a precise record of vehicle access for security, auditing and future analysis...    
+\n===== PAGE 55 =====\n 
+41    
+    
+    
+Figure 4.4.4 — Web Dashboard Detection Event Card (Plate BQX-687, Changan Alsvin — Denied)   
+  
+The denied-access event shown in Figure 4.4.4 is created by the system. The Orange Pi was able to successfully 
+identify the license plate BQX-687, while identifying the vehicle as a Changan Alsvin with 82.8% confidence. 
+The vehicle was not allowed to pass the accesscontrol requirements and an accesscontrol decision 'gate-closed' 
+was issued after the authorization evaluation. This event was then recorded and added to the real-time monitoring 
+stream on the dashboard. 
+    
+    
+       
+    
+    
+       
+    
+       
+    
+    
+    
+    
+    
+    
+       
+    
+          
+\n===== PAGE 56 =====\n 
+42    
+    
+    
+          
+    
+    
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                                                     CHAPTER 05        \n===== PAGE 57 =====\n 
+43    
+    
+5. Results and Discussion          
+In this chapter, an extensive analysis of the proposed all -weather smart vehicle gate recognition 
+system is done. This assessment is to conduct a performance analysis of the individual License 
+plate detection model, Character recognition model and Vehicle make-and-model recognition 
+(VMMR) model. Standard quantitative measures, based on training logs, validation results and 
+held out test data are used for each component. The full system path is evaluated in conjunction 
+with stand-alone testing and applied to  real-world environmental changes like rain, fog and low 
+visibility conditions to test the robustness of the system to be deployed in real world situations..          
+5.1 License Plate Detection Results          
+The first step of the proposed system is to locate the license plates of vehicles in the input images. 
+A YOLOv8-Nano (YOLOv8n) object detection model, which has been trained on a locally created 
+dataset of Pakistani cars and bikes, is used in this task. The nano version of YOLOv8 was chosen 
+because of its lightweight architecture that allows for efficient training and deployment on edge 
+devices while maintaining high detection accuracy.    
+The detector is a very important preprocessing step, because the subsequent recognition stages are 
+all based on correct plate regions. Hence the reliability of this module is directly dependent on its 
+accuracy and stability.      
+     
+Table 5.1 — Yolo Licene Plate Dataset Detail          
+Table 5.1 shows the composition of the set of data utilized for training and evaluation. It contains 
+images of vehicles captured under different lighting, camera angles, occlusions and background 
+complexity scenarios. Supervised learning is provided by manually annotating each license plate 
+using YOLO format bounding boxes.    
+5.1.1 
+  
+  
+  
+Dataset:       
+  
+  
+  
+  
+  
+    
+  
+  
+\n===== PAGE 58 =====\n 
+44    
+    
+    
+Table 5.2 — Yolo Licene Plate Dataset Size         
+Table 5.2 shows the sampling distribution between training, validation and testing sets. The 
+partitioning of the data set has been designed around the following principles to make the 
+experiment sound and unbiased, and to avoid any data leakage between training and test sets    
+        
+Table 5.3 — License Plate Detection: Training Configuration          
+To train the YOLOv8n detector, the hyperparameters and training configuration are summarized 
+in Table 5.3. This involves input resolution, batch size, optimizer type, learning rate schedule, 
+number of epochs, and augmentation strategies.    
+To boost the convergence, the model was trained for 50 epochs with the transfer learning strategy, 
+which allows for the use of the feature representations trained in previous epochs. The training 
+and validation losses were recorded during training to ensur e the stable learning behavior and 
+prevent overfitting.     
+5.1.2 
+  
+  
+  
+Training Conf 
+  
+g 
+  
+uration       
+  
+  
+     
+  
+  
+  
+  
+  
+  
+  
+\n===== PAGE 59 =====\n 
+45    
+    
+  
+Table 5.4 — License Plate Detection: Performance Metrics          
+    
+The results of the evaluation confirm that the detector YOLOv8n is working properly for the test 
+set which it has not been trained on. 98.50% of accuracy means that the model gives very few 
+false alarms, which means that the majority of the areas predicted are in agreement with the actual 
+licensed plates. The high recall value of 95.53% means that the model can detect most plates in 
+the input images while the rest are not detected. This is particularly important in the context of 
+gate automation, where failure to detect gate issues or delays in access to the gate could happen. 
+Moreover, the localization accuracy based on the standard IoU threshold of 50% is very high 
+which can be seen from the obtained mAP@50 score of 98.07%. These results demonstrate a good 
+precision and stability and the detector is suitable to be used for real-time application..   
+  
+  
+5.1.3 
+  
+  
+  
+Detection Performance       
+  
+  
+  
+  
+  
+  \n===== PAGE 60 =====\n 
+46    
+    
+         
+Figure 5.1 — YOLOv8 License Plate Detection: Training and Validation Metrics Over 50 Epochs         
+The training and validation metrics throughout the entire training period are shown in Figure 5.1. 
+As the training proceeds, loss values are consistently decreasing, signifying good optimization. 
+Aside from any training/validation curve differences, the model seems to perform well and 
+generalizes to unseen data. The metrics of performance like precision, recall and mAP begin to 
+increase with each epoch and then level off, indicating that the model is not overfitting.   
+    
+Table 5.4.1 — License Plate Detection: Training Progression (YOLOv8n, 50 Epochs) The 
+sample training statistics are shown in table 5.4.1 for the 50 epochs. The trend of decreasing losses 
+and increasing validation scores shows stable learning behavior along the training process. 
+However, the results also validate that transfer learning made a substantial contribution towards 
+quicker and stable convergence.    

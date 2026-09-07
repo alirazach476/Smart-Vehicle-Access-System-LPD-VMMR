@@ -1,0 +1,69 @@
+CHAPTER 01 — Introduction
+
+1. Introduction
+
+Vehicle identification is a fundamental requirement in controlled-access environments such as parking facilities, residential compounds, corporate campuses, and institutional premises. Conventional gate systems rely on manual credential checks, RFID tags, or barcode passes—approaches that are labour-intensive, prone to human error, susceptible to credential misuse, and difficult to scale across high-traffic entry points. Recent advances in computer vision and deep learning have made it possible to identify vehicles contactlessly through camera imagery, offering a scalable and auditable alternative to physical credential-based access control.
+
+This Final Year Project presents an All-Weather IR-Based Smart Vehicle Gate Recognition System that integrates license plate detection, YOLOv8-based character recognition, and fine-grained vehicle make and model recognition within a single end-to-end pipeline. The system is engineered to operate reliably under real-world outdoor conditions—including fog, rain, low light, and glare—through dedicated weather-aware preprocessing before inference. A dual-modality authorization policy cross-references detected plate text and predicted vehicle identity against a registered database, strengthening security beyond plate-only systems. The complete solution is deployed on an Orange Pi 5 Pro edge node, where all three AI models execute locally, and results are synchronized in real time to a production React dashboard hosted on Vercel for live monitoring, event logging, and administrative control. Optional GPIO signaling supports physical gate indication, yielding a fully integrated hardware–software platform suitable for gated-community and campus-style deployment.
+
+1.1 Historical Background
+
+The development of intelligent vehicle gate systems has gained substantial momentum in recent years, driven by advances in artificial intelligence and computer vision. Conventional access mechanisms—manual credential inspection, RFID tags, and barcode-based passes—are typically slow, error-prone, and insecure when credentials are lost, duplicated, or shared. These methods also scale poorly in high-traffic environments such as parking complexes, corporate campuses, toll plazas, and secured institutional facilities, where queuing delays and staffing costs accumulate rapidly.
+
+Modern smart gate systems overcome these limitations by deploying automated license plate recognition (ANPR) pipelines built on deep learning, enabling contactless identification and authorisation in near real time. Single-shot object detectors such as YOLO can localise license plates with high speed and accuracy, while companion YOLO-based character and digit detection models read plate text directly from cropped regions without dependence on separate classical OCR engines. Convolutional neural networks for vehicle make and model recognition (VMMR) provide an additional verification layer, ensuring that the recognised plate is consistent with the observed vehicle and thereby mitigating plate spoofing and plate–vehicle swapping attacks. Outdoor deployment introduces further demands: fog, rain, and low-light conditions degrade image quality, prompting interest in weather-aware preprocessing and edge inference platforms that keep sensitive imagery on-device rather than routing every frame to the cloud. Building on this established research direction, the present project integrates dark-channel dehazing, rain-streak suppression, and CLAHE-based low-light enhancement with a dual-stage YOLOv8n LPR stack, an EfficientNet-B4 VMMR classifier, Orange Pi 5 Pro edge deployment, and cloud-synchronised gate monitoring—forming a complete all-weather smart vehicle gate recognition platform.
+
+1.2 Objectives and Limitations
+
+The central purpose of this project is to design, implement, and evaluate an automated vehicle access control system based on computer vision and deep learning. The essential objectives are:
+
+1. Build license plate detection using YOLOv8n object detection.
+2. Implement a character recognition module — 38 classes (0–9, A–Z) from detected plates.
+3. Develop a Vehicle Make/Model Recognition (VMMR) system — 245 vehicle classes (Pakistani + JDM market).
+4. Design weather-aware preprocessing for fog removal (DCP), rain removal (vertical median filter), and night enhancement.
+5. Integrate all modules into a unified end-to-end pipeline.
+6. Deploy a web-based dashboard for real-time access control and monitoring.
+7. Implement on Orange Pi 5 (8 GB) for edge deployment at gates.
+8. Achieve end-to-end system response time ≤ 2 seconds per vehicle (capture through inference to access decision).
+9. Match detected plate and vehicle identity against a registered database to grant or deny gate access (open/close).
+
+Limitations:
+
+• The system processes discrete captures or sampled frames at configurable intervals (~1 image per second on Orange Pi CPU); continuous 30 FPS live video streaming to the website is not supported.
+• Full industrial gate-motor actuation with field safety certification is outside scope; optional GPIO/LED indication is supported, but barrier hardware integration depends on site-specific installation.
+• Upload to the Vercel dashboard requires network connectivity; although all AI inference runs offline on the Pi, event logging and remote monitoring need Wi-Fi.
+• Recognition quality still depends on camera placement, focus, and exposure; extreme weather, heavy occlusion, or severely degraded imagery can reduce detection and classification confidence despite preprocessing.
+• Character-stage validation during training mirrored the training split where a disjoint validation folder was unavailable; headline character metrics should be interpreted alongside this reporting caveat.
+
+1.3 Project Scope
+
+This project delivers a complete hardware–software smart vehicle gate recognition system spanning model training, weather-aware preprocessing, edge deployment, and cloud-based monitoring. The software stack comprises: (i) a Dark Channel Prior–based fog/haze mitigation pipeline, a multi-scale vertically oriented median filter with Telea inpainting for rain suppression, and a LAB-CLAHE branch for night and low-light enhancement; (ii) YOLOv8n license plate detection and YOLOv8n 38-class character recognition trained on Pakistani plate datasets; (iii) EfficientNet-B4 VMMR over 245 vehicle classes; (iv) dual-modality access policy logic; and (v) a React frontend with Node.js/Express backend deployed on Vercel, supporting live feed, event logs, vehicle registration, administrative override, and automated allow/deny decisions.
+
+The hardware scope includes an Orange Pi 5 Pro (16 GB) as the edge processing unit, a USB camera for gate-lane image capture, Wi-Fi connectivity for result upload, and optional GPIO signaling for gate status indication. All three AI models run locally on the Pi without cloud inference, preserving privacy and enabling operation with intermittent connectivity. Performance is evaluated using standard detection metrics (precision, recall, mAP@50) for LPR stages and Top-1/Top-5 accuracy for VMMR on held-out test data, supplemented by on-device latency measurements and qualitative end-to-end demonstrations under fog, rain, and low-light conditions.
+
+1.4 Assumptions and Dependencies
+
+The project relies on the following assumptions and dependencies:
+
+Software Environment: Python, PyTorch, OpenCV, and Ultralytics YOLO are installed and configured on both development workstations (Google Colab/CUDA) and the Orange Pi edge node. Model weights are distributed via Hugging Face and loaded at runtime by a unified inference pipeline.
+
+System Integration: License plate detection, character recognition, vehicle classification, weather preprocessing, authorization logic, and cloud upload modules are integrated into a single pipeline (`pipeline.py` on the Pi, with `gate_sync.py` handling Vercel synchronization).
+
+Network and Security: Wi-Fi connectivity is available at the deployment site for uploading detection events. A shared device token authenticates Pi-to-cloud communication through the gate-ingest API.
+
+Data Accuracy: Access decisions depend on a correctly maintained registry of authorized vehicles, temporary visitor entries, and allow/deny policies configured through the web dashboard.
+
+Image Quality: Input images are assumed to contain a visible plate region and sufficient vehicle context for VMMR; preprocessing mitigates moderate weather degradation but cannot fully recover from catastrophic sensor failure or extreme occlusion.
+
+1.5 Broader Impact (UN SDGs)
+
+This project contributes to several UN Sustainable Development Goals:
+
+SDG 9 — Industry, Innovation, and Infrastructure: Delivers an AI-driven automated vehicle gate system combining edge inference, dual-stage YOLO LPR, EfficientNet-B4 VMMR, and cloud-audited monitoring—demonstrating intelligent infrastructure for secure, scalable access control.
+
+SDG 11 — Sustainable Cities and Communities: Reduces gate-lane congestion and manual staffing requirements in residential, corporate, and institutional facilities through automated, contactless vehicle verification.
+
+SDG 12 — Responsible Consumption and Production: Edge AI processing minimizes idle vehicle time at entry points; digital event logging supports efficient facility resource management.
+
+SDG 13 — Climate Action: Reduced vehicle idling at gates lowers unnecessary fuel consumption and associated emissions compared with manual credential checks during peak traffic.
+
+SDG 16 — Peace, Justice, and Strong Institutions: Timestamped detection events, annotated snapshots, and dual-modality verification create a tamper-resistant audit trail that improves transparency and accountability in access control.

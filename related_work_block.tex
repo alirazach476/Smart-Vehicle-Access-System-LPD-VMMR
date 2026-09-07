@@ -1,0 +1,24 @@
+% --- Expanded related work (minimum 25 distinct works cited) ---
+\subsection{ANPR and LPR Systems}
+Early ANPR systems combined edge detection, morphological filtering, and template matching for isolated characters. Surveys emphasize segmentation fragility under blur, skew, and dirt. Rich feature hierarchies from CNNs improved region proposals and classification, while residual networks enabled very deep trainable stacks for detection and recognition. Single-shot detectors such as SSD and YOLO amortize computation over dense grids, trading some localization precision for throughput appropriate to roadside sensing. Faster R-CNN style two-stage designs retain strong accuracy when GPU budgets allow. Feature pyramids further stabilize multi-scale appearance. The Ultralytics YOLOv8 line provides practical training tooling and export paths for embedded targets, which motivates our plate and character model choices.
+
+\subsection{Vehicle Make and Model Recognition}
+Fine-grained recognition distinguishes subordinate categories with small inter-class variance. Urban-scale vehicle detection datasets support detection rather than fine-grained taxonomy. Transfer learning from ImageNet remains the dominant initialization strategy. GoogLeNet-style inception modules demonstrated that multi-scale convolutional towers improve representational efficiency. EfficientNet systematized accuracy--FLOP trade-offs via compound scaling, while MobileNets document depthwise-separable designs for mobile budgets. Our VMMR head follows standard linear replacement atop a frozen ImageNet initialization at training time, with macro-averaged evaluation to summarize performance across 245 long-tail classes.
+
+\subsection{Rain Streak Removal Techniques}
+Model-based priors exploit streak orientation and sparsity. Classical median-based directional filters remain competitive baselines when training data for rain are unavailable at deployment time. Bilateral filtering preserves edges while attenuating uncorrelated noise. Inpainting methods (including Telea) reconstruct occluded texture from surrounding samples; masking must exclude semantically critical structures such as alphanumeric strokes.
+
+\subsection{Low-Light and Night Image Enhancement}
+Multi-scale Retinex balances dynamic range across color channels. CLAHE adapts histogram equalization locally with clipping to limit noise amplification. Our fog pipeline's LAB-space CLAHE stage is methodologically adjacent to night-enhancement practice, although the repository foregrounds fog/haze rather than a dedicated ``night'' function.
+
+\subsection{Glare and Highlight Removal}
+Glare violates diffuse shading models and can saturate detector cells. Practical systems combine polarizing optics, exposure bracketing, and algorithmic highlight suppression. Our dashboard applies Sharp-based tonal adjustments as a placeholder for richer CV pipelines.
+
+\subsection{Transfer Learning, Regularization, and Scaling Laws}
+Feature transferability varies by layer depth. MixUp linearly interpolates training tuples to encourage smoother decision boundaries. CutMix replaces patches between images to improve localization. Cutout encourages robustness to occlusions. Our training recipe uses label smoothing within cross-entropy (a mild calibration regularizer) rather than MixUp/CutMix, which remain documented here as optional extensions.
+
+\subsection{Embedded and Real-Time Vision Systems}
+Early intelligent vehicle systems established latency budgets for lane and obstacle modules. Medical imaging surveys catalog domain-shift failure modes transferable to security analytics. Fully convolutional designs underpin modern segmentation aids that could augment plate ROI proposals in future iterations.
+
+\subsection{Synthesis Relative to This Work}
+Compared with plate-only ANPR deployments, we emphasize dual-modality reasoning (plate string plus fine-grained class) and explicit weather mitigation hooks prior to YOLO inference. Compared with restoration papers that report PSNR alone, we connect restoration operators to downstream consumers (character detectors and a color-sensitive classifier). The repository snapshot transparently records a train/serve resolution mismatch (224 versus 380) that many deployed systems elide; harmonizing these stages is an immediate engineering follow-up.

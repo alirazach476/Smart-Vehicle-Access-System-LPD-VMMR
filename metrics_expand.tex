@@ -1,0 +1,52 @@
+% --- Metrics, detection theory, and confusion-matrix interpretation ---
+\subsection{Intersection-over-Union and Localization Quality}
+For axis-aligned boxes $b^{\mathrm{gt}}$ and $b^{\mathrm{pred}}$, $\mathrm{IoU} = \mathrm{area}(b^{\mathrm{gt}} \cap b^{\mathrm{pred}}) / \mathrm{area}(b^{\mathrm{gt}} \cup b^{\mathrm{pred}})$. Mean average precision (mAP) integrates precision--recall curves across IoU thresholds; mAP@0.5 is the standard summary for near-field plate crops. Table~\ref{tab:lpdmetrics} reports Ultralytics validation mAP for the LPD run at epoch~50; Table~\ref{tab:lpcharmetrics} reports the analogous multi-class box metrics for the 38-way digit--letter detector at epoch~100 (Section~\ref{subsec:lpchar}). Qualitative LPD prediction tiles accompany the results section.
+
+\subsection{Non-Maximum Suppression and Duplicate Detections}
+Greedy NMS suppresses overlapping high-scoring boxes by removing neighbors whose IoU exceeds a threshold. Plate images with stacked characters or decorative frames occasionally produce duplicate proposals; NMS parameters in Ultralytics exports should be logged alongside confidence thresholds (0.25 in the integrated pipeline snippet).
+
+\subsection{Confusion Matrix Structure for 245 Classes}
+Let $C \in \mathbb{N}^{K\times K}$ be the confusion matrix with rows as ground truth and columns as predictions. Diagonal mass concentrates on easy classes; off-diagonal streaks along visually similar siblings (adjacent model years) motivate hierarchical evaluation (make-level aggregation) in future reports.
+
+\begin{table}[!t]
+\centering
+\caption{Confusion-matrix reporting status (245$\times$245 full matrix omitted for brevity).}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Artifact & Status \\
+\midrule
+Chunked confusion plots in notebook & Available in source outputs \\
+Publication-ready PDF matrix & To be exported \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Calibration and Expected Calibration Error}
+Modern classifiers can be miscalibrated even when accurate. Temperature scaling on the validation set can reduce expected calibration error (ECE) before thresholding softmax probabilities for \textsc{alert} policies.
+
+\subsection{Per-Condition VMMR Evaluation (Planned)}
+Ideally, one evaluates VMMR after passing held-out test images through each weather branch (fog, rain, identity). The current reported metrics are on the native test folder without synthetic weather injection; Table~\ref{tab:vmmrcond} marks this gap.
+
+\begin{table}[!t]
+\centering
+\caption{VMMR performance by preprocessing branch (pending controlled injection).}
+\label{tab:vmmrcond}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Branch & Top-1 & Top-5 & Macro-F1 & Notes \\
+\midrule
+Identity & \multicolumn{4}{l}{Reported global test metrics apply here} \\
+Fog mitigated & \multicolumn{4}{c}{\textbf{Pending}} \\
+Rain mitigated & \multicolumn{4}{c}{\textbf{Pending}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Structural Similarity for Restoration Quality}
+When paired clean references exist (rare in gate logs), SSIM supplements PSNR. Reference-free no-reference metrics remain attractive for fog/rain tuning without ground truth.
+
+\subsection{Label Smoothing and Decision Margins}
+Label smoothing $\epsilon$ shrinks logits toward uniformity, widening margins against overconfident mistakes. The training notebook sets $\epsilon{=}0.1$ in cross-entropy, which interacts with macro-FPR estimates on the test split.
+
+\subsection{Reproducibility Checklist}
+Random seeds, exact package versions, GPU model name, dataset zip SHA-256, and training wall-clock should accompany any public replication package. The present paper surfaces counts and metrics already embedded in notebook outputs but defers exact package pins to a future requirements freeze.

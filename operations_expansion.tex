@@ -1,0 +1,66 @@
+% --- Operational, deployment, and signal-chain expansion (repository-aligned) ---
+\subsection{Camera Placement and Photometric Constraints}
+Gate cameras are typically mounted between 2.5\,m and 4.5\,m height with a shallow downward pitch to maximize plate visibility while avoiding horizon dominance. Wide dynamic range (WDR) modes fuse short and long exposures to mitigate headlamp blooming at night. Automatic exposure and gain control (AE/AGC) can induce flicker when duty-cycled with alternating-current street lighting; locking exposure during plate transit windows stabilizes character edges for YOLO detectors.
+
+\subsection{Lens Selection and Depth of Field}
+A moderate focal length (e.g., 6--12\,mm on $\frac{1}{2.8}$--inch sensors) yields a field of view that covers one lane width at typical mounting distances. Depth of field must encompass the stop-line tolerance where vehicles halt; smaller apertures increase depth of field at the expense of light gathering, which interacts with night-time IR illumination planning.
+
+\subsection{Compression and Streaming Artifacts}
+When video is compressed with H.264/H.265 before analytics, blockiness and ringing can degrade high-frequency strokes on plates. All else equal, higher constant bit rate (CBR) or visually lossless intra-refresh profiles improve OCR margins. The present research notebooks operate on stored JPEG/PNG uploads; a production deployment should prefer lightly compressed or raw ROI crops for the character detector.
+
+\subsection{Temporal Fusion Across Frames}
+Single-frame inference is vulnerable to sporadic mis-detections. A temporal voter can accumulate evidence over $N$ consecutive frames, granting access only when a super-majority agrees on both plate string and VMMR class. This trades latency for robustness; $N=3$ at 15\,fps adds only 200\,ms if detections align.
+
+\subsection{Threat Model for Cloned Plates}
+An adversary who physically clones a legitimate plate on a different vehicle body may defeat plate-only systems. Dual verification raises the bar by requiring consistency with registered make/model attributes, although determined adversaries could still match vehicle class. Risk analysis should therefore include operator review channels for \textsc{alert} states.
+
+\subsection{Privacy, Retention, and Compliance}
+License plate imagery is personally identifiable in many jurisdictions. Retention policies, access-controlled storage, and cryptographic integrity checks on audit logs are recommended complements to the technical pipeline described here.
+
+\subsection{Calibration and White Balance}
+Auto white balance (AWB) under sodium vapor lamps can shift chromaticity enough to perturb fine-grained VMMR decisions. Periodic calibration targets or learning-based AWB correction on ROI windows may stabilize appearance.
+
+\subsection{Rainfall Physics and Sensor Wetting}
+Raindrops on the dome or lens housing create localized blur and refraction unrelated to atmospheric rain streaks in the scene. Mechanical wipers, hydrophobic coatings, and heated enclosures interact with the algorithmic rain-removal stage; ignoring housing effects can cap restoration gains.
+
+\subsection{Fog Microphysics and Visibility Metrics}
+Meteorological visibility correlates with extinction coefficient $\beta$ in Koschmieder-type relations. While the dark-channel prior does not require explicit $\beta$ estimation, visibility sensors could drive adaptive switching between restoration strengths.
+
+\subsection{Grounding and Surge Protection for Gate Actuators}
+Inductive loads from barrier motors introduce back-EMF; flyback diodes and opto-isolated relay boards protect GPIO pins on single-board computers. Surge suppressors on long cable runs reduce false triggers from electrical noise.
+
+\subsection{Software Supply Chain for ML Artifacts}
+Classifier and detector checkpoints should be versioned with cryptographic hashes and provenance metadata (training date, dataset snapshot) to support audit trails in regulated facilities.
+
+\subsection{Observability and Remote Diagnostics}
+Structured logs for per-module latency, GPU thermal throttling events, and inference confidence histograms enable remote diagnosis when field performance regresses after firmware updates.
+
+\subsection{Fallback Modes}
+A fail-secure default denies access on power loss or model load failure, while a supervised override mode allows manual gate release with authenticated operator credentials (the dashboard sketches policy toggles but does not replace physical safety interlocks).
+
+\subsection{Dataset Governance and Label Noise}
+Fine-grained classes separated only by model year are susceptible to label noise when crowd-sourced. Periodic inter-annotator agreement studies and confusion-matrix-driven relabeling campaigns improve long-term model stability.
+
+\subsection{Energy Budgeting on Battery-Backed Sites}
+Solar-powered gates must budget inference energy; model pruning, INT8 quantization, and selective frame sampling (motion-triggered capture) reduce average power.
+
+\subsection{Integration with Physical Access Control}
+Relay outputs should align with existing access control panels (fail-safe vs fail-secure wiring). Dry-contact closure duration must respect manufacturer minimum pulse widths.
+
+\subsection{Network Resilience}
+When cloud logging is unavailable, a local circular buffer ensures continuity; MQTT with QoS~1 provides at-least-once delivery for event telemetry once connectivity resumes.
+
+\subsection{Human Factors and Operator UX}
+Alert storms from mis-tuned thresholds erode operator trust. Hysteresis on confidence thresholds and de-duplication of repeated plate reads within short dwell times improve usability.
+
+\subsection{Benchmark Reproducibility}
+The reported VMMR metrics arise from a specific Colab hardware image and random seed (42) for the 80/20 train/val partition inside the training folder. Re-running extraction may shift counts slightly if dataset files change; pinning the zip archive is advised.
+
+\subsection{Future Snow and Fog Variants}
+Snow introduces particle occlusion distinct from liquid rain; dedicated desnowing networks or multi-frame statistical filtering are natural extensions beyond the current repository scope.
+
+\subsection{Open-Set Recognition Considerations}
+The softmax classifier is closed-set; vehicles from unseen manufacturers may map to incorrect high-confidence predictions. Open-set techniques (e.g., energy-based rejection) could augment the decision engine.
+
+\subsection{Summary of Engineering Takeaways}
+Weather mitigation, dual-stream recognition, and policy-aware actuation must be co-designed with site-specific optics, electrical safety, and data governance. The software artifacts in this repository provide a research-grade foundation for those integrations.

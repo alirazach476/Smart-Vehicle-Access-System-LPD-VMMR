@@ -1,0 +1,18 @@
+% --- Additional theoretical material (CNNs, restoration, OCR theory) ---
+\subsection{Convolutional Feature Hierarchies}
+Deep CNNs build compositional representations: early layers respond to oriented edges and blobs, while deeper layers encode parts and object-level cues. Translation-equivariant convolution followed by pooling induces approximate translation invariance at the level of category decisions, which benefits plate and character detection when viewpoints drift slightly between vehicles.
+
+\subsection{Label Smoothing Cross-Entropy}
+For hard targets $q$ and logits $z$, softmax probabilities are $p_i=\exp(z_i)/\sum_j\exp(z_j)$. Label smoothing replaces the one-hot target with a mixture $q'=(1-\epsilon)\,q+\epsilon/K$ over $K$ classes, discouraging overconfident logits and improving calibration at modest $\epsilon$ (we use $\epsilon{=}0.1$ in training code).
+
+\subsection{AdamW Dynamics}
+AdamW decouples $\ell_2$ regularization from the adaptive moment update, improving generalization in large-batch and fine-tuning regimes common to vision transformers and CNN classifiers alike. With cosine or plateau schedulers, practitioners often observe smoother validation loss trajectories than with classical SGD without warmup.
+
+\subsection{Atmospheric Scattering and the Dark Channel}
+Under a single-scattering approximation, scene radiance obeys $I(x)=J(x)t(x)+A(1-t(x))$ where $J$ is scene color, $A$ is airlight, and $t$ is transmission. The dark channel prior observes that most local patches contain at least one low-intensity channel in haze-free outdoor imagery, enabling $t$ estimation and dehazing. Guided filtering refines $t$ at object boundaries.
+
+\subsection{Structural Similarity as a Supplementary Metric}
+SSIM compares luminance, contrast, and structure between restored and reference frames when ground truth exists. For gate imagery, reference-free no-reference metrics (NIQE, BRISQUE) could complement PSNR/SSIM in future benchmarking.
+
+\subsection{OCR as Sequence Decoding}
+Beyond independent character boxes, sequence models (CTC, attention) decode variable-length strings. Our character model predicts boxes explicitly; sequence language models over plate lexicons could be fused as a future refinement.

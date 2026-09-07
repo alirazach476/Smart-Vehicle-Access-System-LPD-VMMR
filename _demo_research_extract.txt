@@ -1,0 +1,163 @@
+\n===== PAGE 1 =====\nAll-Weat her Smar t Vehicle Gat e Recognit ion
+Syst em
+YOLOv8 · EfficientNet · Raspber r y Pi 5 · ANPR · VMMR
+Pr oj ect Descr ipt ion
+All-Weat her Smar t Vehicle Gat e Recognit ion Syst emis a pr oj ect t hat focuses on pr oviding access t o vehicles based
+on t heir number plat e and car model t hr ough aut hor izat ion via a dat abase. The UI st or es t he r ecor ds and pr ovides
+t he admin wit h access t o view logs and monit or live camer a act ivit y.
+For implement at ion, t he number plat e is det ect ed by t r aining a YOLOv8 model followed by a number plat e
+r ecognit ion model t r ained on an annot at ed dat aset . The aut hor izat ion is also influenced by vehicle make and model
+r ecognit ion, for which we cr eat ed a lar ge dat aset and t r ained our model using Efficient Net .
+I n t his pr oj ect , t he number plat e is det ect ed and r ecognized along wit h t he vehicle make and model in all weat her
+condit ions. We ar e cur r ent ly implement ing it on a Raspber r y Pi 5 (8GB), which will be connect ed t o t he camer a
+inst alled at t he gat e.
+The camer a will capt ur e t he vehicle image, t he Raspber r y Pi pr ocesses t he image using t he t r ained models, checks
+t he vehicle det ails wit h t he dat abase, and t hen decides whet her t he vehicle should be allowed access or not .
+Lit er at ur e Review
+1. Vehicle and License Plat e Recognit ion wit h
+Novel Dat aset for Toll Collect ion (2025)
+Uses camer as at t oll point s t o aut omat e r ecognit ion
+of vehicle t ypes and license plat es. Dat aset : 10,000
+images. YOLOv5/v8/v11 achieve ~99% accur acy; nano
+ver sions ~97–98%. Also deployed on Raspber r y Pi.
+Our Novelt y
+We achieve 99.4% accur acy for license plat e r ecognit ion.
+We classify by specific make and model (e.g., Honda Civic
+2023) r at her t han br oad cat egor ies. Our UI st or es
+t imest amps of aut hor ized vehicles and pr ovides live
+admin monit or ing.
+2. ANPR for Pakist ani License Plat es: A Deep
+Lear ning Appr oach Using CNN and YOLO (2025)
+Addr esses fake plat e det ect ion challenges specific t o
+Pakist ani plat es (non-st andar d sizes, font s, color s).
+Used YOLOv3 on 200 images wit h 96.7% accur acy.
+Per for med det ect ion, segment at ion, and r ecognit ion.
+Our Novelt y
+We achieved 99.4% on 600+ manually annot at ed images.
+We also per for m VMMR t r ained on a lar ge dat aset . Our
+syst em includes a dat abase, UI , and Raspber r y Pi
+implement at ion. Their syst em det ect s fake plat es, which
+our s cur r ent ly does not .
+3. Towar ds Efficient Vehicle Recognit ion: A
+Unified Syst emfor VMMR, ANPR, and Color
+Classificat ion (2025)
+MobileNet V2 for VMMR, YOLO+EasyOCR for ANPR,
+HSV clust er ing for color . Dat aset : 4,000+ images for
+YOLO, 364 Pakist ani images for VMMR. Accur acies:
+ANPR 93.3%, VMMR 90.6%, color 71.8%.
+Our Novelt y
+Our YOLOv8 achieves 99.4% ANPR vs t heir 93.3%,
+avoiding EasyOCR's poor per for mance on Pakist ani
+font s. Our VMMR cover s a far wider vehicle mar ket . We
+include a UI , dat abase, and edge device deployment .
+4. An Efficient Met hod t o Locat e License Plat e
+Under Diver se Envir onment s (2025)
+Used Chinese CCPD dat aset (290,000 images) wit h
+CNN, pooling, r egional pr oposal net wor k, and SGD
+Our Novelt y
+Their model is t r ained on Chinese plat es and won't
+gener alize t o Pakist ani plat es. We sur pass t heir 97.5%
+wit h 99.4% on har der Pakist ani plat es using YOLOv8. We\n===== PAGE 2 =====\nopt imizer . Achieved 97.5% mAP, out per for ming
+YOLOv3, Fast er -RCNN, and RPNet on Chinese plat es.
+also add VMMR, a web dashboar d, and edge device
+pr ocessing.
+5. Number Plat e Recognit ion Smar t Par king
+Management Syst emUsing I oT (2025)
+Det ect s plat es at ent r y/exit , calculat es par king
+dur at ion, gener at es billing. Uses Google Vision AI
+Cloud (98% accur acy), ESP32 micr ocont r oller , I R
+sensor s, and a web dashboar d wit h dat abase.
+Our Novelt y
+Google Vision AI is cost ly; we use a self-host ed solut ion
+at 99.4% accur acy. We use Raspber r y Pi inst ead of
+ESP32 for it s significant ly higher pr ocessing power .
+6. An Efficient Aut omat ed Vehicle License Plat e
+Recognit ion Syst emUnder I mage Pr ocessing
+(2023)
+MATLAB-based ALPR using gr ayscale conver sion, noise
+r emoval, char act er segment at ion wit h 36 classes.
+Dat aset : 120 images. Det ect ion 97.5%, r ecognit ion
+96.67%, char act er r ecognit ion 94.17%.
+Our Novelt y
+We achieved 99.4% using char act er segment at ion on a
+much lar ger dat aset . Their syst em lacks VMMR and
+per for ms poor ly under low light and r ain due t o t he
+small t r aining set .
+7. I nt elligent Vehicle Number Plat e Recognit ion
+Syst emUsing YOLO for Enhanced Secur it y in
+Smar t Buildings (2024)
+Gr ayscale conver sion and edge det ect ion for plat e
+det ect ion. Used 37,000-image char act er /number
+dat aset . Achieved 96% pr ecision and 95% OCR
+accur acy. Fails at differ ent angles and light ing
+condit ions.
+Our Novelt y
+Our 600+ r eal plat e images out per for m t heir 37,000-
+image char act er -font dat aset in r eal-wor ld condit ions.
+Their dat aset doesn't t r ain on r eal plat es, causing
+failur es at angles and dist ance. No VMMR, dashboar d, or
+edge device.
+8. Real-Time Car Model and Plat e Det ect ion
+Syst emUsing Deep Lear ning Ar chit ect ur es
+(2024)
+MobileNet V2+YOLO for VMMR; PaddleOCR+SVTR-t iny
+for ANPR. Test ed at Fir at Univer sit y gat e (Tur key).
+Det ect s only 30 car models fr om a 1,000-image
+dat aset . Achieves 97.5% accur acy under fog/r ain/low
+light .
+Our Novelt y
+Pakist ani plat es ar e har der t han Tur kish plat es. Their
+VMMR cover s only 30 models; our s is far br oader . They
+out per for m us in var ied weat her as t hey wer e t r ained
+on r eal-t ime weat her dat a. No UI , dat abase, or edge
+device.
+9. Aut omat ic Vehicle Number Plat e Recognit ion
+Syst emUsing Tensor Flow Obj ect Det ect ion
+(2024)
+ANPR for Niger ian plat es using Tensor Flow+EasyOCR
+on a 203-image Kaggle dat aset . Test ed on 40 plat es
+(38 cor r ect ). EasyOCR accur acy: 93.33%. Uses SQLit e
+dat abase for owner r ecor d lookup.
+Our Novelt y
+Small dat aset and lower accur acy (93.33%). No VMMR, no
+UI , no edge device implement at ion.
+10. An End-t o-End Aut omat ic Number Plat e
+Recognit ion Syst emBased on YOLOv12 and
+Tesser act OCR (2025)
+Tur kish ANPR t est ed at Pr ot el company gat e on
+1,200 ent r ies. Dat aset : 2,000 Kaggle + 500 cust om
+images. YOLOv12: 96% plat e det ect ion, Tesser act
+OCR: 82% char act er accur acy. 3.2s/vehicle.
+Post gr eSQL + TCP/I P gat e cont r ol.
+Our Novelt y
+Tesser act OCR's 82% accur acy is ver y low and degr ades
+fur t her under fog/r ain/low light . Pakist ani plat es ar e
+har der t han Tur kish. No VMMR, no UI , no edge device
+implement at ion.\n===== PAGE 3 =====\nResult s
+ANPR Detection Results
+The following images demonst r at e successful license plat e det ect ion and r ecognit ion acr oss var ious Pakist ani
+vehicle t ypes, light ing condit ions, and plat e st yles.
+Fig. 1 —Suzuki Mehr an: MND464
+Fig. 2 —Toyot a Cor olla: MN484
+Fig. 3 —Mer cedes E-Class: LEF743
+Fig. 4 —Honda Cit y: AHF743
+ Fig. 5 —Suzuki Swift : AEA591
+SystemAuthor ization Output
+The following scr eenshot s demonst r at e t he complet e end-t o-end pipeline, including vehicle model classificat ion, plat e
+r ecognit ion, and aut hor izat ion st at us.\n===== PAGE 4 =====\nFig. 6 —Suzuki Mehr an: RND-5050 UNAUTHORI ZED
+ Fig. 7 —Suzuki WagonR 2015: APC-197 UNAUTHORI ZED
+YOLOv8 Validation Metr ics
+The heat map below summar izes t he key per for mance met r ics of t he t r ained YOLOv8 license plat e det ect ion model.
+Fig. 8 —YOLOv8 Validat ion Met r ics Heat map (Accur acy 99.4% · Pr ecision 98.8% · Recall 96.5% · F1 97.7% · FPR 1.2%)
+Met r ic Value I nt er pr et at ion Benchmar k
+Accur acy (mAP50) 99.4% St at e-of-t he-ar t Best in r eviewed paper s
+Pr ecision 98.8% Ver y low false posit ives Exceeds all compar ed
+syst ems
+Recall 96.5% Excellent det ect ion r at e High cover age acr oss
+plat e t ypes
+F1 Scor e 97.7% St r ong balance Robust under var ied
+condit ions
+False Posit ive Rat e 1.2% Minimal incor r ect
+det ect ions
+Near -zer o gat e er r or s
+All-Weat her Smar t Vehicle Gat e Recognit ion Syst em · Pr oj ect Repor t

@@ -1,0 +1,19 @@
+vehicle_id,plate_number,vehicle_make,vehicle_model,plate_confidence,vehicle_confidence,status,timestamp,frame_number
+01,LER-1234,Toyota,yaris gen 2014 2017,0.7772,0.8313,Unauthorized,2026-07-08T00:23:01,12
+02,,Prince,Pearl,0.0,0.5041,Pending Review,2026-07-08T00:23:56,111
+04,A-23,Suzuki,Cultus 3rd Generation,0.7494,0.3597,Pending Review,2026-07-08T00:24:45,188
+05,AFR-024,Nissan,March,0.6813,0.4253,Pending Review,2026-07-08T00:24:50,192
+13,12,Toyota,hilux gen 2015 2020,0.4606,0.4269,Pending Review,2026-07-08T00:25:23,251
+15,AYE-734,Suzuki,Alto 1st Generation,0.7604,0.9202,Pending Review,2026-07-08T00:27:31,513
+16,,Unknown,,0.0,0.0,Pending Review,2026-07-08T00:29:14,671
+17,,Unknown,,0.0,0.0,Pending Review,2026-07-08T00:30:36,822
+18,,Unknown,,0.0,0.0,Pending Review,2026-07-08T00:31:37,922
+19,,Unknown,,0.0,0.0,Pending Review,2026-07-08T00:32:06,971
+21,FDA-3333,Daihatsu,Cuore,0.8427,0.8192,Unauthorized,2026-07-08T00:32:33,1013
+22,,Toyota,hilux gen 2005 2015,0.0,0.6992,Pending Review,2026-07-08T00:33:18,1063
+20,,Unknown,,0.0,0.0,Pending Review,2026-07-08T00:33:23,1070
+23,WE-563,Honda,City 5th Generation,0.8919,0.7871,Pending Review,2026-07-08T00:34:26,1151
+24,,Honda,City 5th Generation,0.0,0.4062,Pending Review,2026-07-08T00:34:42,1163
+03,,Unknown,,0.0,0.0,Pending Review,2026-07-08T00:35:32,1201
+07,,Unknown,,0.0,0.0,Pending Review,2026-07-08T00:35:32,1201
+25,L,Unknown,,0.3013,0.0,Pending Review,2026-07-08T00:35:32,1201

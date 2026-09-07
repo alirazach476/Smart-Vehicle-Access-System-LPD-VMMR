@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+
+# Large model weights (GitHub 100MB limit)
+*.pth
+vehicle_make_model.pth
+models/vehicle_make_model.pth
+vmmr fyp/efficientnet_b4_best.pth
+
+# Tooling / build caches
+_tectonic/
+_tectonic.zip
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.nav
+*.snm
+*.toc
+*.vrb
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Backup duplicates
+*.bak
+*.images.bak

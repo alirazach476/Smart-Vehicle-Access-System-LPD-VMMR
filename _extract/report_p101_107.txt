@@ -1,0 +1,264 @@
+\n===== PAGE 101 =====\n 
+87    
+    
+6.5 Future Work          
+1. Properly configure GPIO allow/deny logic with relay-based barrier hardware.    
+2. Allow multiple frames to vote for stable real-time operation.    
+3. Scale out to production, multi-site with expanded datasets and move to persistent cloud storage.    
+6.6 Conclusion          
+This All-Weather Smart Vehicle Gate Access System shows how a multimodel AI pipeline can be 
+used for automated vehicle detection, classification, and image pre -processing to guarantee high 
+accuracy in accessing vehicles. The system outperforms most academic and commercial ALPR 
+solutions with a Top1 accuracy rate of 96.24% in v ehicle classification across 245 classes and a 
+mAP of 97.7% for character recognition, and a mAP of 98.07% for license plate detection.          
+The preprocessing module is equipped with a Dark Channel Prior-based fog removal algorithm and 
+a vertical median filter-based rain removal algorithm, which resolves an important issue of existing 
+systems by allowing reliable operations under adverse weathe r conditions. The Reactbased web 
+dashboard offers a full administrative layer to monitor, log and manage vehicle access.          
+The current software implementation is flexible, but the modular architecture is suitable for embedded 
+hardware deployment, physical gate integration and real -time video processing. The project lays the 
+groundwork for a fully automated, intelligent, scalab le vehicle access control system, which 
+significantly cuts down manual monitoring, increases the security level by providing a dual check 
+(plate + vehicle model), and provides a thorough digital audit trail.      
+   
+     
+     
+   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+       \n===== PAGE 102 =====\n 
+88    
+    
+Appendices          
+Appendix A — Sustainable Development Goals 
+Achievement          
+In Appendix A, SDG 12.1 is connected to SDGs 11.1 and 11.7.          
+Smart Vehicle Gate Recognition System is connected to SDG 9 (Industry, Innovation and Infrastructure) 
+by its capabilities of license plate reading and categorization of vehicles using AI technology, which can be 
+used to improve the overall infrastructure in cities and ensure safety within gated communities.          
+In this regard, SDG 11 (Sustainable Cities and Communities) is improved by greater urban safety 
+and traffic management. Automated sign-in and surveillance eliminate human mistakes and 
+strengthen security around entry points, paving the way for better traffic flow in metropolitan areas.          
+The project also highlights the importance of efficient use of human and computational resources, 
+which aligns with the SDG 12 (Responsible Consumption and Production). The automated vehicle 
+checks replace paper-based log books, and they are also less impactful on the environment than 
+traditional access control systems.          
+The system also indirectly supports SDG 4 (Quality Education) by giving students and researchers a 
+practical application of AI and computer vision. It provides an application-based learning 
+environment to show software-hardware integration applications.         
+Appendix B — HDL / C Source Code          
+Core Pipeline Code (Python)      
+#    
+============================================================================== 
+=========    
+# Grid 9: Night — plate detection + Characters/digits detection + vehicle 
+classification    
+#    
+==============================================================================   
+========= n    = len(night_results_summary) cols = 5 rows = (n +  
+ cols  -  1)  //  cols  fig,   
+ axes  =  plt.subplots(rows,  cols,   
+figsize=(cols * 5, rows * 5)) axes = np.array(axes).flatten() for  
+ i,  (fname,  ann_img,  plates,  vehicle)  in  
+enumerate(night_results_summary):      axes[i].imshow(ann_img)     
+axes[i].set_title(         vehicle.replace('_', ' '), fontsize=8, 
+color='yellow',         fontweight='bold', pad=4    
+    )     axes[i].set_xlabel(         f"Plate: {', '.join(plates)}", fontsize=10, 
+color='orange',         fontweight='bold', labelpad=6    \n===== PAGE 103 =====\n 
+89    
+    
+    )      axes[i].tick_params(left=False,  
+bottom=False,                          
+labelleft=False,  labelbottom=False)      
+axes[i].title.set_backgroundcolor('#222222')      
+for  spine  in  axes[i].spines.values():          
+spine.set_edgecolor('orange')          
+spine.set_linewidth(2)  forjin  range(n,  
+len(axes)):       axes[j].axis('off')   
+fig.patch.set_facecolor('#1a1a1a')   plt.suptitle('🚗 Plate Detection, OCR & 
+Vehicle Classification (After Night   
+Enhancement)',               fontsize=13,  color='white',  fontweight='bold',               
+y=1.01,  backgroundcolor='#1a1a1a')  plt.tight_layout()  
+plt.savefig('/content/night_batch_results.png',  dpi=180,             
+bbox_inches='tight', facecolor='#1a1a1a') plt.show() print("📊  
+Night batch results saved to /content/night_batch_results.png")     
+Appendix C — List of Components          
+USB Camera (Gate-Lane Capture)    
+• Collects entire vehicle and license plate image at the access gate.    
+• FYP deployment: Standard USB 1080p camera via the Orange Pi 5 Pro USB port and batch 
+processing of photos and video frames recorded from a laptop is supported.    
+Embedded Processing Unit (Orange Pi 5 Pro, 16 GB)    
+• Runs the complete edge inference stack:  YOLOv8n plate detection, YOLOv8n character digit 
+recognition, and EfficientNet-B4 VMMR locally on CPU.    
+• Achieves approximately 700–1000 ms per image, meeting the ≤2 s end-to-end response objective.    
+Weather and Light Sensors    
+• Design role: Automatically detect rain, fog, and ambient light to trigger the correct preprocessing 
+branch.    
+• FYP status: Not physically integrated. Weather handling is implemented in software through 
+preprocess auto, fog, rain, or night flags, or manual selection based on scene conditions.    
+• Future work: Integrate environmental sensors for fully automatic hardware -triggered 
+preprocessing.    
+Gate Motor / Sliding Gate System    
+• Physical mechanism for opening and closing the access barrier.    
+• FYP status: Not integrated. The system produces allow/deny decisions in software and logs them 
+onto the web dashboard.    \n===== PAGE 104 =====\n 
+90    
+    
+• Future work:  Connect authorization output to a physical gate motor with site -specific safety 
+requirements.    
+Motor Controller (e.g., Centsys Controller)    
+• Interface between the processing unit and the gate motor; converts low-voltage control signals into 
+motor drive commands.    
+• FYP status:  Not implemented — planned for the next development phase alongside barrier 
+hardware.    
+Power Supply Unit    
+• Provides stable power to the Orange Pi, camera, and peripherals.    
+• FYP deployment: 5V 5A USB -C power supply for the Orange Pi 5 Pro under full AI load 
+(insufficient current can cause shutdown during inference).    
+• Future outdoor deployment:  Regulated PSU relay module, and optional sensors inside a 
+weatherproof enclosure.    
+Relay Module (Optional GPIO)    
+• Provides electrical isolation between the low-voltage Orange Pi GPIO and high-power gate motor 
+circuits.    
+• FYP status: Optional GPIO/LED indication supported in software for gate open/close status; full 
+relay-to-motor wiring is planned, not completed.    
+• Improves safety when connecting the Pi to external gate actuation hardware.    
+Industrial Enclosure    
+• Protects electronics from dust, moisture, heat, and mechanical damage for long -term outdoor 
+installation.    
+• FYP status:  Prototype demonstrated on a bench/lab setup (Pi + USB camera + monitor); 
+weatherproof enclosure is recommended for production but not part of the current prototype.    
+Connecting Cables and Wiring    
+Hardware Connections:    
+• USB camera → Orange Pi USB port    
+• 5V 5A USB-C → Orange Pi power input    
+• HDMI → monitor (setup and live preview)    
+• Onboard Wi-Fi → Vercel cloud upload   
+  
+  
+  
+  
+  
+  \n===== PAGE 105 =====\n 
+91    
+    
+  
+  
+        Appendix D — Project Timeline     
+          
+   
+          
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+\n===== PAGE 106 =====\n 
+92    
+    
+  
+             References  
+         
+[1] Thapliyal, A., Singh, P., & Agarwal, M. (2023). YOLOv5-based license plate detection 
+and Tesseract OCR for real-time ALPR systems. IEEE Transactions on Intelligent 
+Transportation Systems, 24(7), 7234–7249.          
+[2] Li, Y ., Zhang, X., & Chen, W. (2023). Character segmentation and CNN-based 
+recognition for Chinese license plates in complex scenes. Journal of Computer Vision 
+Research, 18(3), 345– 362.          
+[3] Agarwal, S., Kumar, A., & Rao, V . (2024). Transformer-based OCR for 
+layoutindependent license plate recognition. IEEE Access, 12, 12345–12365.          
+[4] Chen, H., Liu, J., & Park, S. (2024). Image enhancement for license plate recognition in 
+rain and motion blur using adaptive preprocessing. Computer Vision and Image 
+Understanding, 201, 103– 115.          
+[5] Plavac, D., Jaksic, N., & Horvat, D. (2024). Performance evaluation of commercial  
+ALPR systems under adverse weather conditions. Transportation Research Part C, 148, 
+104–    
+118.          
+[6] Wang, Q., Zhou, L., & Zhang, H. (2025). YOLOv5-LPRNet: End-to-end license plate 
+recognition in complex scenarios. International Journal of Computer Vision, 133(5), 
+1456–1475.          
+[7] Kim, S., Park, J., & Lee, D. (2025). Video-based license plate tracking and recognition 
+using deep learning. IEEE Transactions on Multimedia, 27(2), 456–468.          
+[8] Semiromizadeh, P., Tavakolian, H., & Jabbari, B. (2025). Enhancing vehicle make and 
+model recognition with 3D attention modules for improved gate security. Pattern 
+Recognition Letters, 182, 89–96.          
+[9] Milesight Technology. (2025). AI-powered license plate recognition for intelligent gate 
+systems.  Technical White Paper. https://www.milesight.com          
+[10] Intertraff Solutions. (2025). License plate recognition in adverse weather conditions:  
+Challenges and solutions. https://intertraff.com          
+[11] Nature. (2025). Advanced deep learning techniques for automated license plate 
+recognition.        
+Scientific Reports, 15, 2435.          
+[12] Ultralytics. (2025). YOLOv8 real-time object detection framework.          
+https://github.com/ultralytics/yolov8          
+[13] Redmon, J., & Farhadi, A. (2023). YOLOv3: An incremental improvement.  
+arXiv:1804.02767.          
+[14] Zafar, H., & Stojmenovic, M. (2025). Real-time license plate detection and recognition:  
+A survey. IEEE Transactions on Vehicular Technology, 74(2), 1234–1256.          
+[15] Ray Smith. (2024). Tesseract OCR: An open-source approach. International Journal on 
+Document Analysis and Recognition, 27(1), 45–67.          
+[16] Baek, J. et al. (2024). What is wrong with scene text recognition model comparisons?     \n===== PAGE 107 =====\n 
+93    
+    
+[17] Shi, B., Bai, X., & Yao, C. (2024). An end-to-end trainable neural network for 
+imagebased sequence recognition. IEEE TPAMI, 39(11), 2298–2304.          
+[18] Li, H. et al. (2025). Show, attend and read: A baseline for irregular scene text 
+recognition. Pattern Recognition, 145, 108–125.          
+[19] Buades, A., Coll, B., & Morel, J. (2024). Non-local image denoising. IEEE TIP, 20(6), 
+1450–1466.          
+[20] Pizer, S. M. et al. (2023). Adaptive histogram equalization and its variations. CVGIP, 
+39(3), 355– 368.          
+[21] Zuiderveld, K. (2023). Contrast limited adaptive histogram equalization.     
+[22] Soille, P. (2023). Morphological image analysis: Principles and applications (2nd ed.).     
+[23] Gonzalez, R. C., & Woods, R. E. (2023). Digital image processing (4th ed.). Pearson 
+Education. [24] Li, R., Cheng, Y ., & Liu, X. (2025). All-weather license plate 
+recognition using adaptive image enhancement. IEEE TITS, 26(3), 2234–2248.          
+[25] Krause, J. et al. (2024). 3D object representations for fine-grained categorization. ICCV 
+Workshops, 554–561.          
+[26] Lin, T. Y . et al. (2024). Bilinear CNN models for fine-grained visual recognition. ICCV , 
+1449– 1457.          
+[27] Tan, M., & Le, Q. V . (2023). EfficientNet: Rethinking model scaling for CNNs. ICML, 
+6105–6114.          
+[28] Buslaev, A. et al. (2024). Albumentations: Fast and flexible image augmentation.   
+Information, 11(2), 125.          
+[29] Avigilon.   (2025).     Automatic     license     plate  recognition     systems.   
+https://www.avigilon.com          
+[30] ANPR UK. (2025). Vehicle recognition technology. https://www.anpr.uk          
+[31] Ye, Q., & Doermann, D. (2023). Text detection and recognition in imagery: A survey. 
+IEEE TPAMI, 37(7), 1480–1500.          
+[32] Redmon, J., & Farhadi, A. (2024). YOLOv5 improvements and deployment.  
+arXiv:2004.10934.          
+[33] LeCun, Y . et al. (2023). Gradient-based learning applied to document recognition. Proc. 
+IEEE, 86(11), 2278–2324.          
+[34] Devlin, J. et al. (2024). BERT: Pre-training of deep bidirectional Transformers.   
+arXiv:1810.04805.          
+[35] He, K. et al. (2023). Deep residual learning for image recognition. CVPR, 770–778.          
+[36] Plavac, D. et al. (2024). Comparative analysis of LPR systems under challenging 
+environmental conditions. TRR, 2678(11), 234–245.          
+[37] Wang, Q. et al. (2025). Real-time end-to-end license plate detection using  
+YOLOv5LPRNet.  Computers & Electrical Engineering, 98, 107–119.          
+[38] Kim, S. et al. (2025). Temporal consistency for video-based license plate recognition.   
+[39] Plavac, D., & Horvat, D. (2025). Weather impact on ALPR: A comprehensive field 
+study.  JITS, 29(3), 345–362.          
+[40] Karimi, M. et al. (2024). License plate recognition datasets: A systematic survey.     
+    

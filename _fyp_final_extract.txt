@@ -1,0 +1,1020 @@
+\n===== PAGE 1 =====\n  
+Page 1    
+All-Weather IR-Based Smart Vehicle Gate Recognition System    
+   
+    
+Final Year Project Report    
+Presented    
+by    
+    
+Abdul Hadi   
+CIIT/FA22-BCE-018/LHR    
+Ali Raza Chaudhry    
+                                                        CIIT/ FA22-BCE -102/LHR  
+                                         Abdullah  Yaseen    
+CIIT/ FA22-BCE -065/LHR    
+    
+In Partial Fulfillment of the  Requirement 
+for the Degree of  Bachelor of  
+Science in Computer Engineering    
+DEPARTMENT OF COMPUTER ENGINEERING    
+    
+    
+COMSATS UNIVERSITY ISLAMABAD,   
+Lahore Campus    
+\n===== PAGE 2 =====\n  
+Page 2    
+    July 2026    Declaration    
+We, hereby declare that this project neither as a whole nor as a part there of has been 
+copied out from any source. It is further declared that we have developed this project and the 
+accompanied report entirely on the basis of our personal efforts made under the sincere 
+guidance of our supervisor. No portion of the work presented in this report has been 
+submitted in the support of any other degree or qualification of this or any other University or 
+Institute of learning, if found we shall stand responsible.    
+    
+    
+Signature: ___________________    
+Abdul Hadi    
+Date: _______________________    
+    
+Signature: ___________________    
+Ali Raza Chaudhry    
+Date: _______________________    
+    
+Signature: ___________________    
+Abdullah Yaseen    
+Date: _______________________    
+    
+    
+    
+    
+COMSATS UNIVERSITY ISLAMABAD,   
+Lahore Campus    
+   July 2026        \n===== PAGE 3 =====\n  
+Page 3    
+All-Weather IR-Based Smart Vehicle          
+Gate Recognition System    
+    
+An Undergraduate Final Year Project Report submitted to the   
+Department of    
+COMPUTER ENGINEERING    
+As a Partial Fulfillment for the award of Degree   
+Bachelor of Science in Computer Engineering    
+by    
+    
+   Name    Registration Number    
+   
+   Abdul Hadi    CIIT/FA22-BCE-O18/LHR    
+   Ali Raza Chaudhry    CIIT/FA22-BCE-102/LHR    
+   Abdullah Yaseen    CIIT/FA22-BCE-065/LHR    
+    
+Supervised by    
+    
+Dr. Taimoor Naeem    
+Assistant Professor,    
+Department of Computer Engineering   
+CU Islamabad, Lahore Campus    
+    
+COMSATS UNIVERSITY ISLAMABAD,   
+Lahore Campus    \n===== PAGE 4 =====\n  
+Page 4    
+   July 2026        
+Final Approval    
+This Project Titled “Write Project Title” Submitted for the   
+Degree of    
+Bachelor of Science in Computer Engineering    
+by    
+    
+   Name    Registration Number    
+   
+   Abdul Hadi    CIIT/FA22-BCE-018/LHR    
+   Ali Raza Chaudhry     CIIT/FA22-BCE-102/LHR    
+   Abdullah Yaseen    CIIT/FA22-BCE-065/LHR    
+    
+has been approved as partial fulfillment for the award of  
+bachelor’s degree.    
+    
+    
+    
+Supervisor     
+Taimoor Naeem     
+Assistant Professor    
+    
+           
+Internal Examiner-1        Internal Examiner-2    
+Mr. Moazzam Ali Sahi        Dr. Ikram Ullah Khosa    
+Lecturer    
+    
+    
+    
+    Assistant Professor    
+External Examiner           Head    \n===== PAGE 5 =====\n  
+Page 5    
+   Name,                     Department of Computer  
+Engineering   
+Designation    
+    
+COMSATS UNIVERSITY ISLAMABAD,    
+    
+Lahore Campus    
+   July 2026        \n===== PAGE 6 =====\n  
+Page 6    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Dedication 
+No portion of the work referred in this report has been submitted in fulfilment of another 
+degree or qualification for any other institute or university. 
+ 
+ 
+    
+    
+    
+            
+  \n===== PAGE 7 =====\n  
+Page 7    
+ 
+Acknowledgements   
+In the name of God, the Most Kind and Most Merciful We would like to thank our parents who 
+kept always backing us up, both financially and morally.     
+We would also like to thank Dr. Taimoor Naeem for his guidance and for encouraging us to 
+work hard and smart. We have found him very helpful while discussing the optimization 
+issues in this dissertation work. His critical comments on our work have certainly made us 
+think of new ideas and techniques in the fields of optimization and software, hardware 
+simulations.     
+We are grateful to God Almighty who provides all kinds of resources to us, so that we may 
+use them properly for the benefit of mankind. May He continue to provide us with all the 
+resources and the guidance to keep helping humanity.    
+    
+    
+    
+    
+    
+            Abdul Hadi    
+    
+    Ali Raza Chaudhry    
+                            Abdullah Yaseen    
+    
+    
+    
+    
+    \n===== PAGE 8 =====\n  
+Page 8    
+Table of Contents    
+    
+1 INTRODUCTION ................................................................................................................ ............. 1    
+1.1 HISTORICAL BACKGROUND .................................................................................................... 1  1.2   
+OBJECTIVES AND LIMITATIONS ....................................................................................................... 2  1.3   
+PROJECT SCOPE ......................................................................................................................... 3  1.4   
+ASSUMPTIONS AND DEPENDENCIES ................................................................................................. 4  1.5   
+     BROADER IMPACT (UN SDGS) ...................................................................................................... 4  1.6   
+     THESIS KEY CONTRIBUTIONS .......................................................................................................... 6     
+   1.6.1    Thesis Outline .............................................................................................................. .. 7    
+2 LITERATURE REVIEW...................................................................................................................... 9    
+2.1 RELATEDTECHNOLOGIES ............................................................................................. 9    
+2.1.1 ObjectDetection ........................................................................................ 9     
+2.1.2 Ocr .......................................................................................................... 10     
+2.1.3 ImagePreprocessing................................................................................. 10     
+2.1.4 Model Recognition..................................................................................... 11     
+2.2 OVERVIEWOFEXISISTINGSYSTEMS ........................................................................................ 11    
+2.2.1 AlprSystems ............................................................................................ 12    
+2.2.2 AlprResearch .......................................................................................... 12     
+2.3 LIMITATIONS .......................................................................................................... 13    
+3 MODELING AND SIMULATION ..................................................................................................... 15    
+3.1 CONCEPTUALFRAMEWORK .................................................................................... 15 3.2   
+     HIGH LEVEL DESIGN ........................................................................................................................ 15    
+3.2.1 Block Diagram ............................................................................................................... .... 15  
+3.2.2 Flow Diagram ................................................................................................................ ... 16    
+3.2.3 Performance ................................................................................................................. .... 17   
+3.3 SUBSYSTEM DESIGN ................................................................................................................... 18    
+3.1.1 ListofSubsystems........................................................................................... 18    
+3.1.2 Flowchart ......................................................................................................... 19      
+3.1.3 3.4 LOWLEVELDESIGNANDCOMPONENTSELECTION  ......................................................  19   
+3.4.1ImageAcquisitio........................................................................... 20 
+3.4.2LicensePlateDetection.............................................................................20  
+ 3.4.3ImagePreprocessing................................................................................... 20  
+3.4.4OpticalCharacterRecognition .................................................................... 20    
+3.4.5 Vehicle Classification ................................................................................................... 20  
+3.4.6 Authorization and Decision .......................................................................................... 21     
+3.4.7 EmbeddedProcessing ....................................................................................... 21     
+3.4.8 User Interface ..................................................................................................... 21     
+   3.5  SYSTEMARCHITECTURE ................................................................................................ 22  
+4 HARDWARE/SOFTWARE IMPLEMENTATION AND TESTING .................................................... 27    
+4.1 SOFTWARE IMPLEMENTATION ............................................................................................. 27    
+4.1.1 LicensePlateDetection ...................................................................................... 27    
+4.1.2 AdaptiveImagePrrprocessing ............................................................................ 27    \n===== PAGE 9 =====\n  
+Page 9    
+4.1.3 TextRecognition .................................................................................................... 28    
+4.1.4 VehcileMakeandModelClassifications ...............................................................  28  
+3. 1.5AuthorizationLogic........................................................................ 28    
+ 4.1.6  Visualization and Logic ................................................................................... ................................ 28    
+4.2 TESTING PROCEDURES ............................................................................................................... 28     
+4.2.1 DatasetDescription........................................................................................ 29    
+4.2.2 TestingMethodology ......................................................................................... 29    
+4.3 RESULTS AND FINDINGS ....................................................................................................... 30    
+4.3.1 YoloPlateDetectionResults.............................................................................. 30    
+4.3.2 PreprocessingandYOLOV8Results ...................................................................... 32    
+4.3.3 VehicleModelClassificationResults ................................................................... 33    
+4.3.4 PipelineResults............................................................................................ 35    
+4.4 WEB DASHBOARD IMPLEMENTATION .................................................................................. 37   
+CHAPTER 05 ……………………………………………………………………………………………………................................ 48   
+Results and Discussion ...................................................................................................... ........................ 49   
+  5.1 License Plate Detection Results ......................................................................................... ................ 50   
+5.1.1 Training Configuration ............................................................................................................ 50   
+5.1.2 DetectionPerformance ........................................................................................................ ..50   
+  5.2 Character Recognition Results............................................................................................ ............... 52       
+5.2.1 Dataset Details ....................................................................................................... ...........52        
+CHAPTER 06 .................................................................................................................. ................... 65   
+Conclusion and Future Work .................................................................................................. ............................... 66   
+6.1 Summary ..................................................................................................................... ............ 67   
+6.2 Key Achievements ............................................................................................................ ....... 67   
+6.3 System Performance Summary ............................................................................................... 68    
+6.4 Limitations ................................................................................................................. ............ 68   
+6.5 Future Work ................................................................................................................. .......... 68   
+6.6 Conclusion ........................... .............. .............. .............. ..... .............. .............. ..... .......... 68     
+APPENDIXES................................................................................................................... ......................38    
+Appendix A: Sustainable Development Goals Achievement............................................................ 38     
+Appendix B: HDL or C Source Code ............................................................................................ .... 41    
+APPENDIX C: LIST OF COMPONENTS .......................................................................................................... 44     
+APPENDIX D: PROJECT TIMELINE............................................................................................................... 46     
+BIBLIOGRAPHY ................................................................................ ...........................................................  47    
+    
+           
+  
+List of Symbols, Abbreviations and  \n===== PAGE 10 =====\n  
+Page 10    
+Acronyms    
+    
+ALPR ........................................................... Automatic License Plate Recognition    
+VMMR ......................................................... Vehicle Make and Model Recognition    
+YOLO ............................................................ You Only Look Once    
+OCR ............................................................. Optical Character Recognition    
+    
+    
+              \n===== PAGE 11 =====\n  
+Page 11    
+List of Figures    
+    
+Figure 3. 2. 1 Block Diagram ................................................................................................16    
+    
+Figure 3. 2. 2 Flow Diagram ............................................................................................. 17  
+Figure 3. 3. 2 Flow Diagram of Subsystem ......................................................................... 19  
+Figure 3. 4. 1 Prototype Application Diagram ..................................................................... 22  
+Figure 3. 5. 1 Architecture Overview Diagram .................................................................... 23   
+Figure 3. 5. 1 Class Diagram ............................................................................................... 24   
+Figure 3. 5. 2 Erd Diagram .................................................................................................. 25    
+    
+    
+    
+    
+    
+Figure 4. 3. 1 Performance Metrices HeatMap .................................................................. 30    
+    
+    
+Figure 4. 3. 1 Figure-2 Yolo Number Plate Detection ...................................................... 31    
+Figure 4. 3. 1 Figure-3 Confusion Matrix ............................................................................ 31    
+Figure 4. 3. 2 Number Plate Preprocessing ....................................................................... 32   
+Figure 4. 3. 2 Figure-2 Number Plate Recognition ............................................................. 33   
+Figure 4. 3. 3 Vehicle Make/Model Heatmap ..................................................................... 33    
+Figure 4. 3. 3 Figure-2 Efficient-Net Confusion Matrix ...................................................... 34    
+Figure 4. 3. 3 Figure-3 Testing Example............................................................................. 34   
+Figure 4. 3. 4 Pipeline Result 1.......................................................................................... 35   
+Figure 4. 3. 4 Pipeline Result 2........................................................................................... 36    
+Figure 4. 4. 1 Web Application Frontend ........................................................................... 37   
+  
+Figure 5.1    YOLOv8 License Plate Detection — Training and Validation Metrics Over 50  
+Epochs ........ …………………………………………………………………………………..51  
+Figure 5.2    YOLOv8 License Plate Detection — Sample Detection on Pakistani Vehicle  
+............................................................................................................................................ 51  
+Figure 5.3    YOLOv8 License Plate Detection — Confusion Matrix .................................. 52  
+Figure 5.4    Character Recognition Dataset — Roboflow Interface Showing 1,235  
+Annotated Plate Images …………………………………………………………………….. 53 
+Figure 5.5    Character Recognition — Training and Validation Metrics Over 100 Epochs 
+............................................................................................................................................ 54  
+Figure 5.6    Character Recognition — Confusion Matrix (38 Classes) ............................ 55  
+Figure 5.7    Character Recognition — End-to-End Plate Detection and yolov8n Results on  
+Test Images ... …………………………………………………………………………………..56  
+Figure 5.8    VMMR — Training and Validation Loss, Accuracy, and Learning Rate Over 50 
+Epochs ............................................................................................................................... 58  
+Figure 5.9    VMMR — Test Metrics Heatmap (Accuracy, Precision, Recall, F1, FPR)  \n===== PAGE 12 =====\n  
+Page 12    
+......................................................................................................................................... 59 
+Figure 5.10   VMMR — Confusion Matrix (Classes 0–49) ................................................. 59  
+Figure 5.11   VMMR — Sample Test Predictions with Top-5 Probabilities ........................60  
+Figure 5.12   Original Foggy Vehicle Images .................................................................... 61  
+Figure 5.1    YOLOv8 License Plate Detection — Training and Validation Metrics Over 50 
+Epochs ........ …………………………………………………………………………………..51  
+Figure 5.2    YOLOv8 License Plate Detection — Sample Detection on Pakistani Vehicle  
+........................................................................................................................................... 51  
+Figure 5.3    YOLOv8 License Plate Detection — Confusion Matrix ................................. 52  
+Figure 5.4    Character Recognition Dataset — Roboflow Interface Showing 1,235  
+Annotated Plate Images ……………………………………   …………………………….. 53  
+Figure 5.5    Character Recognition — Training and Validation Metrics Over 100 Epochs 
+........................................................................................................................................... 54  
+Figure 5.6    Character Recognition — Confusion Matrix (38 Classes) ............................. 55  
+Figure 5.7    Character Recognition — End-to-End Plate Detection and yolov8n Results on 
+Test Images ... …………………………………………………………………………………..56  
+Figure 5.8    VMMR — Training and Validation Loss, Accuracy, and Learning Rate Over 50  
+Epochs ............................................................................................................................... 58  
+Figure 5.9    VMMR — Test Metrics Heatmap (Accuracy, Precision, Recall, F1, FPR)  
+.......................................................................................................................................... 59  
+Figure 5.10   VMMR — Confusion Matrix (Classes 0–49) ................................................. 59  
+Figure 5.11   VMMR — Sample Test Predictions with Top-5 Probabilities  
+...........................................................................................................................................60  
+Figure 5.12   Original Foggy Vehicle Images .................................................................... 61  
+Figure 5.13   After Fog Removal (Preprocessed) ............................................................. 61  
+Figure 5.14   Original Rainy Vehicle Images ................................................................. 62  
+Figure 5.15   After Rain Removal (Preprocessed) ....................................................... 62  
+Figure 5.16   Integrated Pipeline Results on Fog-Preprocessed Images — Plate Detection,  
+yolov8n, and Vehicle Classification  ………………………………………………………….63  
+Figure 5.17   Integrated Pipeline Results on Rain -Preprocessed Images — Plate Detection, 
+yolov8n, and Vehicle Classification ……………………………………..………………….. 63  
+  
+Chapter 6 — No figures numbered in this document (use Table 6.1 for the performance 
+summary in 6.3).  
+  
+Appendix E Gantt Chart ..........................................................................................................  
+46   
+    
+    
+    
+        \n===== PAGE 13 =====\n  
+Page 13    
+List of Tables    
+    
+Table 1. 1 SDGs in the light of objectives............................................................................... 5    
+    
+Table 2. 3 Literature Review Summary Table ....................................................................... 13    
+    
+Table 4. 3 Result Table ……………………………………....................................................... 36   
+ 
+Table 5.1 — License Plate Detection………………………………………………………………37 
+ 
+Table 5.2---Performance Matrix………………………………………………………………….37    
+ 
+Table 5.3 — Dataset Summary ………………………………………………………………40 
+ 
+Table 5.4 —Training Configuration …………………………………………………………….40 
+ 
+Table 5.5 — Performance Metrics ………………………………………………………………41 
+ 
+Table 5.6 — Dataset Summary …………………………………………………………………43 
+ 
+Table 5.7 —  Training Configuration ………………………………………………………..... 44 
+ 
+Table 5.8 — Test Set Performance Metrics ……………………………………………………..44 
+ 
+Table 5.9 — Training Progression  ………………………………………………………………..45 
+ 
+ 
+  
+    
+              \n===== PAGE 14 =====\n  
+Page 14    
+Abstract    
+This project presents a Smart Vehicle Gate Recognition System designed to automate 
+vehicle access decisions in gated communities and parking facilities while reducing reliance 
+on manual checks. The system integrates YOLO-based license plate detection, optical 
+character recognition (OCR), and convolutional neural networks for vehicle make and model 
+classification. The pipeline of image preprocessing is used to improve the lowlight images, 
+decrease the noise, diminishes the fog and glare and refines the edges of characters to 
+make YOLO V8 more strong in the real scenarios. The classification of vehicles is achieved 
+on the basis of a fine-tuned EfficientNet-B0 model, and the ResNet18 is applied to 
+benchmarking based on transfer learning. The decision to grant an authorization is made by 
+comparing known license plates and vehicle models projected in an authorized database 
+and the visualization of results is implemented on the basis of a web-based dashboard of 
+dynamic control and administration. In the work of the future, physical gate control is also to 
+be provided.    
+CHAPTER 01 — Introduction  
+1. Introduction  
+Vehicle identification is a basic necessity of a controlled access environment like a parking 
+place, residential complex, and safe institutional premise. The traditional vehicle gate systems 
+are usually based on manual checks or physical credentials that a re not very efficient, have 
+high chances of abuse, and cannot be easily operated on a large scale. The latest advances 
+in computer vision and deep learning have opened the possibility of automated visual 
+classification of vehicles through simple camera dev ices, which represents a beneficial 
+alternative to access control based on credentials.  
+This Final Year Project (FYP -1) is designed to test a hybrid recognition pipeline that uses 
+license plate detection, optical character recognition, and vehicle make and model recognition 
+to enhance access control. The system is intended to perform efficien tly under real -life 
+conditions such as low light, glare, and poor weather conditions while making correct and 
+consistent decisions. The design is scalable and modifiable to fit various facilities; the 
+software-based design will enable support for hardware gates and centralized monitoring 
+systems in the future.  
+1.1 Historical Background  
+The creation of intelligent vehicle gate systems has received growing attention in recent years 
+due to rises in artificial intelligence and computer vision. Conventional gate entry systems — 
+such as manual checking, RFID tags, or barcodes — are usually slow, subject to errors, and 
+insecure in the event of losing or damaging credentials. They also struggle to handle crowded 
+areas such as parking lots, corporate campuses, toll plazas, and other secure facilities.  
+Modern smart gate systems address these shortcomings by integrating automated licence 
+plate recognition with deep learning, allowing contactless identification and authorisation in 
+real time. Object detection networks like YOLO and yolov8n tools like EasyOCR  can 
+accurately identify license plates and extract plate text. Convolutional neural networks for \n===== PAGE 15 =====\n  
+Page 15    
+vehicle make and model recognition add an additional security layer, ensuring the recognized 
+plate matches the actual vehicle.  
+1.2 Objectives and Limitations  
+The central purpose of this project is to explore automated vehicle access control based on 
+computer vision and deep learning. The essential purposes are:  
+• Create a real -time YOLO -based license plate detection unit to identify and locate 
+license plates in vehicle images.  
+• Write an intelligent YOLOv8 pipeline with EasyOCR and pre -processing options 
+including denoising, histogram equalization, CLAHE, detail enhancement, and 
+sharpening.  
+• Detect vehicle types using EfficientNet-B0 for make and model classification.  
+• Install authorization logic that cross -checks identified license plate text and vehicle 
+model against an authorized vehicles database.  
+• Test performance in various conditions (day/night, glare, fog, rain, motion blur) 
+targeting above 90% accuracy.  
+Limitations:  
+• This phase involves software implementation only; no real -time video streaming 
+hardware or physical gates are offered.  
+• System performance relies on the quality of camera images and can degrade under 
+extreme weather or very low light.  
+• Hardware integration including IR cameras and gate actuation is planned for future 
+project stages.  
+1.3 Project Scope  
+This FYP-1 is dedicated to the software portion of the smart vehicle gate recognition system. 
+It includes the YOLO-based license plate detection module, an EasyOCR-based recognition 
+system with adaptive preprocessing, and a convolutional neural network to classify vehicle 
+make and model.  
+An authorization logic module linked to a database of registered cars is included and tested 
+on camera-sourced images. Performance is evaluated using accuracy, precision, recall, and 
+F1 score. Hardware-related work — connecting IR cameras and integrating Raspberry Pi — 
+is left to be developed later.  
+1.4 Assumptions and Dependencies  
+There are several assumptions and dependencies on which this project is implemented:  
+Software Environment: Python, PyTorch, OpenCV, Ultralytics YOLO, and EasyOCR  are 
+assumed to be installed and correctly configured.  
+System Integration: All project modules — license plate detector, YOLOv8, vehicle 
+classifier, and authorization logic — are assumed to integrate correctly into a unified 
+pipeline.  
+Disturbance Factors: Input image quality is assumed to be reasonable, with limited extreme 
+disturbances. The system uses preprocessing to handle moderate disturbances.  \n===== PAGE 16 =====\n  
+Page 16    
+Data Accuracy: The system relies on a correct and updated database of authorized vehicles.  
+1.5 Broader Impact (UN SDGs)  
+This project contributes to several UN Sustainable Development Goals:  
+SDG 9 — Industry, Innovation, and Infrastructure: Combines YOLO-based licence plate  
+recognition, EasyOCR, and CNN-based vehicle recognition to design intelligent infrastructure 
+for access security.  
+SDG 11 — Sustainable Cities and Communities: Decreases congestion by increasing the 
+efficiency of vehicle entry in residential, corporate, and public facilities.  
+SDG 12 — Responsible Consumption and Production: Automated recognition reduces 
+idle vehicle time and digital monitoring enables resource management.  
+SDG 13 — Climate Action: AI models and image processing are energy -efficient; reduced 
+vehicle idle time lowers carbon emissions.  
+SDG 16 — Peace, Justice, and Strong Institutions: Automated verification creates a 
+tamper-resistant audit trail and improves transparency and accountability.  
+Table 1.1 — SDGs in the Light of Objectives  
+SDG  Included  Level  Project Goal  
+How Goal Meets 
+SDG  Remarks  
+SDG 3: Good 
+Health  
+No  N/A  N/A  N/A  N/A  
+SDG 4:  
+Quality  
+Education  
+Yes  Average  Practical AI/CV 
+learning platform  
+Allows students to 
+explore real-world 
+ML/CV pipelines  
+Promotes 
+hands-on 
+STEM  
+learning  
+SDG 8:  
+Decent Work  
+No  N/A  N/A  N/A  N/A  
+SDG 9:  
+Industry,  
+Innovation  
+Yes  Major  AI-driven automated 
+vehicle gate system  
+Introduces YOLO, 
+OCR, CNN for 
+infrastructure 
+automation  
+Scalable to 
+gated 
+communities 
+and industrial 
+facilities  
+SDG 11:  
+Sustainable  
+Cities  
+Yes  Average  Urban safety and 
+efficient vehicle 
+access control  
+Reduces human  
+errors and improves  
+traffic flow  
+Can be 
+extended for 
+smart city 
+projects  
+SDG 12:  
+Responsible  
+Consumption  
+Yes  Partial  Minimize paperbased 
+logs via digital 
+processing  
+Maintains digital logs 
+and automated 
+decision-making  
+Expandable 
+with IoT 
+energy- 
+efficient  
+components  \n===== PAGE 17 =====\n  
+Page 17    
+1.6 Thesis Key Contributions  
+This thesis contributes in two key aspects. First, it demonstrates how several AI methods — 
+YOLO-based license plate detection, EasyOCR text recognition, and CNN vehicle make and 
+model recognition — are built into a single, software-based vehicle access control system.  
+This offers a powerful, scalable, automated vehicle verification platform capable of real-world 
+performance.  
+Second, it provides a comprehensive performance appraisal demonstrating consistency in 
+accuracy and reliability across different environmental conditions, including low light, glare, 
+and moderate weather. The research establishes a solid base for integrati ng hardware in 
+future project phases.  
+1.6.1 Thesis Outline  
+Chapter 2 provides background material and a review of literature pertinent to automated 
+license plate recognition, vehicle make and model classification, and smart gate systems. 
+Gaps identified in existing research are highlighted.  
+Chapter 3 covers system design and analysis, including the proposed methodology, functional 
+and non-functional requirements, tools and technology, and the architecture of the system.  
+Chapter 4 describes software implementation: license plate detection using YOLO, text 
+recognition using EasyOCR, vehicle make and model classification, and authorization logic. 
+Testing, performance evaluation, and result analysis are also included.  
+Chapter 5 compares findings, discussing system strengths, weaknesses, and accuracy across 
+various environmental conditions. Results are compared with available solutions.  
+Chapter 6 concludes the thesis, outlining primary findings, future enhancements, hardware 
+extensions, and paths forward for improving system performance and functionality.  
+    
+CHAPTER 02 — Literature Review  
+2. Literature Review  
+This chapter covers the most important technologies and research pertinent to automated 
+license plate recognition (ALPR), vehicle make and model recognition (VMMR), and intelligent 
+gate systems. It discusses object detection networks, YOLOv8, image preproc essing, and 
+vehicle classification. An overview of existing commercial and academic ALPR systems is 
+provided, and limitations are assessed. This chapter forms the basis of the design decisions 
+taken in this project.  
+2.1 Related Technologies  
+The project leverages up -to-date computer vision and deep learning methods to permit 
+automated vehicle access. YOLO networks are applied to detect license plates at high speed 
+and accuracy, while EasyOCR is capable of detecting text under different lighting and weather 
+conditions. Preprocessing methods including denoising, contrast enhancement, and 
+sharpening improve plate readability. EfficientNet-B0 recognizes the make and model of the 
+vehicle, providing an added verification layer.  \n===== PAGE 18 =====\n  
+Page 18    
+2.1.1 Object Detection Networks  
+YOLO (You Only Look Once) formulates object detection as a one-stage regression problem 
+rather than a two-stage region proposal process. The YOLO family has evolved from YOLOv3 
+to the current YOLOv8, with each generation improving speed and detection accur acy. 
+YOLOv8 proposes superior backbone architecture, feature network design, and decoding 
+improvements [12][13].  
+YOLO is especially appropriate for ALPR since license plates are small objects occupying 10– 
+30% of the image. Multi-scale feature extraction enables effective detection in real conditions 
+at 30–100 FPS on modern hardware. YOLO consistently outperforms old er methods (Haar 
+Cascades, selective search) when trained on license plate datasets [14].  
+2.1.2 Optical Character Recognition (OCR)  
+Two popular approaches exist for ALPR character recognition:  
+Tesseract OCR: An open-source engine that integrates pixel and feature-based recognition. 
+Tesseract is tunable using Page Segmentation Modes (PSM); PSM 7 (treat image as a 
+single text line) is common for license plate recognition, and custom character whitelisting 
+enhances reliability [15].  
+Deep Learning-Based OCR: Applications like EasyOCR use CRNN (Convolutional  
+Recurrent Neural Network) or Transformer-based models. These methods outperform 
+Tesseract under difficult conditions (low resolution, blur, occlusion) though at higher 
+computational cost [16][17].  
+2.1.3 Image Enhancement and Preprocessing  
+License plate images in the field frequently suffer from low contrast, motion blur, noise, glare, 
+or weather obstruction. Advanced preprocessing algorithms are used to counter these 
+challenges:  
+• Denoising: Denoising: Bilateral filtering and Non -Local Means (NLM) remove noise 
+while preserving edges [19].  
+• Contrast Enhancement: Contrast Enhancement: CLAHE enhances visibility in 
+lowlight or high-glare situations without halo effects [20][21].  
+• Detail Enhancement: Detail Enhancement: Morphological operations and unsharp 
+masking clarify characters against the background [22].  
+• Sharpening: Sharpening: Kernel -based sharpening (e.g., Laplacian) sharpens 
+characters while minimizing noise amplification [23].  
+2.1.4 Vehicle Make and Model Recognition (VMMR)  
+VMMR is a fine-grained classification problem requiring distinction among hundreds of vehicle 
+classes. Deep CNNs such as ResNet and EfficientNet are commonly used [25][26]:  
+• ResNet18: ResNet18: A residual network with 18 learnable layers and skip 
+connections to overcome the vanishing gradient problem. Used in this project to 
+identify common Pakistani vehicles.  
+• EfficientNet-B0: EfficientNet-B0: Best suited for edge and real-time use due to high 
+accuracy with minimal computation. Transfer learning with ImageNet weights, 
+augmented with data augmentation, makes it robust to pose, lighting, and occlusion 
+variations [27][28].  \n===== PAGE 19 =====\n  
+Page 19    
+2.2 Overview of Existing Systems  
+2.2.1 Commercial ALPR Systems  
+Commercial ALPR systems such as Avigilon, ANPR UK, and Parkeon are common in parking 
+lots, toll plazas, and law enforcement. These systems achieve 90–98% accuracy in controlled 
+daytime conditions. However, their efficiency reduces significantly in fog, rai n, or glare, and 
+dependency on cloud services or dedicated equipment limits flexibility [29][30][31].  
+2.2.2 Academic ALPR Research (2023–2025)  
+Recent works focus on strengthening real-world performance:  
+• Thapliyal et al. (2023): YOLOv5 with Tesseract achieved good speed but poor 
+performance in low lighting [32].  
+• Li et al. (2023): Segmentation and CNN -based recognition for Chinese plates 
+improved performance in difficult scenes but struggled with rain and fog [33].  
+• Agarwal et al. (2024): YOLO combined with Transformer -based yolov8n achieved 
+layout-independent recognition at higher computational cost [34].  
+• Chen et al. (2024): Fusion method combining image enhancement for motion blur and 
+rain [35].  
+• Semiromizadeh et al. (2025): Added vehicle recognition with 3D attention modules 
+enabling two-step checking (plate + model) to enhance security [39].  
+2.3 Limitations of Existing Work  
+Despite great advances, current ALPR and VMMR systems have several persistent problems:  
+1. Weather Degradation: Accuracy may reduce by 20 –40% during fog, precipitation, or 
+glare despite preprocessing [36][40].  
+2. Partial Vehicle Checking: Most systems only check plates, failing to offer security 
+against false or swapped plates [39].  
+3. Real-Time Constraints: Advanced YOLOv8 and video tracking algorithms are 
+computationally costly and difficult to run on standard hardware [37][38].  
+4. Reduced Integration: Studies tend to focus on standalone individual components 
+rather than end-to-end gate automation systems [9].  
+5. Dataset Bias: Many datasets are biased toward European or Chinese plates, limiting 
+generalization to Pakistani or South Asian contexts [41].  \n===== PAGE 20 =====\n  
+Page 20    
+Table 2.3 — Literature Review Summary  
+  
+Table 2.3: Literature Review Summary Table  
+    
+CHAPTER 03 — Modeling and Simulation  
+3. Modeling and Simulation  
+The modeling and simulation of the intelligent vehicle gate recognition system is introduced in 
+this chapter. A software-built prototype validates the system and tests it in real-world scenarios 
+including vehicle identification, plate identification, and vehicle classification.  
+3.1 Conceptual Framework  
+The Intelligent Vehicle Gate Recognition System operates on a multi-stage image processing 
+and machine learning pipeline: vehicle and license plate recognition, plate region cropping 
+and preprocessing, plate character identification, vehicle make/model cla ssification, and 
+authorization checking. The design philosophy is based on modularity, durability, and flexibility 
+toward real -world conditions. The combination of YOLO -based detection and CNN -based 
+classification has been validated in literature as effective across varying lighting and weather 
+conditions.  
+3.2 High Level Design  
+3.2.1 Block Diagram  
+The system is composed of parallel modules: Image Acquisition → License Plate Detection  
+(YOLOv8) → Plate Preprocessing → OCR (EasyOCR) → Vehicle Classification 
+(efficientnetB4) → Authorization Decision → Web Dashboard Display. All modules are 
+\n===== PAGE 21 =====\n  
+Page 21    
+interdependent, with processed data flowing to the next phase in a smooth end -to-end 
+operation.  
+  
+Figure 3.2.1 — High Level Block Diagram  
+3.2.2 Flow Diagram  
+The flow starts with vehicle image capture, followed by plate detection via YOLOv8. Detected 
+plates are cropped and improved by the adaptive preprocessing pipeline. EasyOCR extracts 
+text from the license plate, and EfficientNet -B0 classifies the full vehic le image. The 
+\n===== PAGE 22 =====\n  
+Page 22    
+authorization  module  compares  results  against  the  database  and 
+ outputs  
+Authorized/Unauthorized status, shown in real-time on the web dashboard.  
+  
+Figure 3.2.2 — Flowchart of the Proposed System  
+3.2.3 Performance  
+The system is designed to run with 85% accuracy in YOLOv8, 90% vehicle classification 
+accuracy, and process images in 2–3 seconds on standard CPU hardware. Key parameters 
+are detection precision, recognition reliability, preprocessing efficiency, classific ation 
+accuracy, and overall system response time.  
+\n===== PAGE 23 =====\n  
+Page 23    
+3.3 Subsystem Design  
+The system is divided into subsystems to simplify design, implementation, and maintenance. 
+Each subsystem handles a particular duty within the recognition and authorization pipeline.  
+3.3.1 List of Subsystems  
+• Image Acquisition Subsystem: Image Acquisition Subsystem: Handles camera 
+shots of vehicles or loads stored image and video frames for processing.  
+• License Plate Detection Subsystem: License Plate Detection Subsystem: Employs 
+the YOLOv8 deep learning framework to identify and forecast license plates.  
+• Image Preprocessing Subsystem: Image Preprocessing Subsystem: Refines 
+identified plate segments using denoising, contrast enhancement, and sharpening to 
+boost readability.  
+• OCR Subsystem: OCR Subsystem: Uses EasyOCR to extract alphanumeric 
+characters from preprocessed license plate images.  
+• Vehicle Classification Subsystem: Vehicle Classification Subsystem: Classifies 
+vehicle make and model using a pretrained EfficientNet-B0.  
+• Authorization/Decision Subsystem: Authorization/Decision Subsystem: Matches 
+identified plate and vehicle model against the database to grant or deny access.  
+• Web Dashboard and Logging Subsystem: Web Dashboard and Logging 
+Subsystem: Provides a user interface for monitoring outputs, managing authorized 
+vehicles, and storing access logs.  
+3.3.2 Flowchart of Subsystems  
+  
+Figure 3.3.2 — Flow Diagram of Subsystems  
+\n===== PAGE 24 =====\n  
+Page 24    
+3.4 Low Level Design and Component Selection  
+This section outlines the low-level design of the system, detailing the software and hardware 
+components of each subsystem. Selection criteria include functionality, availability, integration 
+ease, and cost-effectiveness.  
+3.4.1 Image Acquisition — IR Camera with IR Illuminator  
+The IR camera captures vehicle and license plate images under changing lighting and weather 
+conditions. The built-in IR illuminator maintains consistent lighting in dark or dim areas without 
+requiring additional lamps. This component was chosen for its ava ilability, affordability, and 
+proven effectiveness in ALPR.  
+3.4.2 License Plate Detection — YOLOv8 Detection Model  
+YOLOv8 is employed for license plate detection based on its real -time inference capability 
+and great detection accuracy. It predicts bounding boxes and class probabilities in a single 
+forward pass, making it relevant to time-sensitive gate automation tasks.  
+3.4.3 Image Preprocessing — OpenCV Image Processing Library  
+OpenCV implements preprocessing operations including denoising, contrast enhancement, 
+morphological filtering, and sharpening. These functions enhance visibility of license plates 
+under extreme environments. OpenCV was chosen for its open -source nature, hi gh 
+optimization, and broad community support.  
+3.4.4 OCR — EasyOCR Engine  
+EasyOCR extracts license plate text from preprocessed images using deep learning -based 
+text recognition, making it resistant to font variations, skew, and partial occlusion. It was 
+chosen for its high recognition rate in real images and ease of integration with other software 
+components.  
+3.4.5 Vehicle Classification — EfficientNet-B0  
+EfficientNet-B0 classifies vehicle make and model with high accuracy and low computation 
+complexity. The compound scaling approach maximizes depth, width, and resolution, 
+permitting efficient inference on standard hardware. Testing confirmed it outperforms ResNet 
+and MobileNet alternatives with fewer resources.  
+3.4.6 Authorization — Local CSV / SQLite Database  
+Authorized pairs of license plates and vehicle models are stored in a lightweight local 
+database. SQLite or CSV-based storage was chosen for simplicity and ease of deployment in 
+FYP-1. More sophisticated database systems may be implemented in later phases.  
+3.4.7 Embedded Processing — Raspberry Pi 5  
+The Raspberry Pi 5 will run the entire recognition pipeline at the gate, chosen for its 
+affordability and ease of installation. Software validation is currently performed through 
+desktop processing in FYP-1.  \n===== PAGE 25 =====\n  
+Page 25    
+3.4.8 User Interface — Web-Based Dashboard  
+The web dashboard provides real-time monitoring, authorization controls, and logging history. 
+It translates complex processing outputs into an easily usable format for non-technical users, 
+following industry-standard ALPR interface conventions.  
+  
+Figure 3.4 — Prototype Application Diagram  
+3.5 System Architecture and Module Interaction  
+The system architecture is described graphically using architecture diagrams that show the 
+overall interrelation of system modules, data flow between image acquisition and 
+decisionmaking, and the logical arrangement of the recognition pipeline.  
+\n===== PAGE 26 =====\n  
+Page 26    
+  
+Figure 3.5.1 — Architecture Overview Diagram  
+\n===== PAGE 27 =====\n  
+Page 27    
+  
+Figure 3.5.2 — Class Diagram  
+The class diagram illustrates the operation of the system at the software level. The system 
+controller is the primary organizer and receives video frames from the camera, which are then 
+processed through plate detection, image preprocessing, yolov8n, and vehicle classification 
+subsystems. Results are compared with the authorization service, and all events are tracked 
+and accessible via the web dashboard.  
+\n===== PAGE 28 =====\n  
+Page 28    
+  
+Figure 3.5.3 — ER Diagram  
+The ER diagram explains the database structure for FYP -1. It demonstrates how vehicles, 
+users, AI models, and recognition events are stored and related, supporting the process of 
+plate detection, vehicle classification, and access control. Every recognitio n event captures 
+the complete AI pipeline output including detected plate text, vehicle model, confidence 
+scores, and model inference results.  
+    
+CHAPTER 04 — Implementation and Testing  
+4. Implementation and Testing  
+This chapter explains how the smart vehicle gate recognition system is applied in practice. It 
+describes the production, testing, and assembly of every software module into the functioning 
+pipeline. Experimental results and performance analysis have also b een introduced to 
+evaluate effectiveness and reliability under varying circumstances.  
+4.1 Software Implementation  
+4.1.1 License Plate Detection Using YOLOv8  
+License plate detection is conducted using Ultralytics YOLOv8. YOLOv8-Nano (YOLOv8n) is 
+fine-tuned on a dataset of vehicle -based license plates. The model consumes input images 
+scaled to 640×640 and gives bounding box locations and confidence scores. Built -in 
+\n===== PAGE 29 =====\n  
+Page 29    
+NonMaximum Suppression (NMS) eliminates redundant detections. Cropped plate regions 
+are then passed to the preprocessing and yolov8n stages.  
+4.1.2 Adaptive Image Preprocessing  
+An adaptive preprocessing pipeline is applied to each detected plate region to enhance 
+yolov8n accuracy. This pipeline includes denoising, CLAHE contrast enhancement, histogram 
+equalization, and sharpening operations. These measures handle low light, glare, rain 
+artifacts, and blur while maintaining character edges. The preprocessing stage runs in 
+approximately 100–200 ms on standard CPU hardware.  
+4.1.3 License Plate Text Recognition  
+EasyOCR extracts text from preprocessed license plate images, returning identified 
+characters and confidence scores. The extracted text is converted to uppercase, with 
+nonalphanumeric characters removed and the result formatted in standard plate format. 
+EasyOCR provides reliable recognition across varying plate conditions at low computational 
+cost.  
+4.1.4 Vehicle Make and Model Classification  
+The CNN -based EfficientNet -B0 model classifies vehicles using a custom labeled car 
+makeand-model dataset. EfficientNet-B0 demonstrates high accuracy and robustness across 
+common vehicle models. A ResNet18 model was also trained for benchmarking comparison. 
+Based on evaluation, EfficientNet -B0 is selected as the primary classifier for its superior 
+accuracy and stability.  
+4.1.5 Authorization Logic  
+The authorization component checks vehicle access against a database of registered plate 
+and vehicle model pairs. Access is authorized only when both the detected plate number and 
+the predicted vehicle model match an existing database entry. If the plate m atches but the 
+vehicle model differs, access is denied and flagged as suspicious.  
+4.1.6 Visualization and Logging  
+The system generates visual overlays on processed images including plate bounding boxes, 
+recognized text, and authorization status. Every processed vehicle generates a log record 
+with timestamp, plate number, predicted model, and access decision. These log s support 
+tracking and subsequent auditing.  
+4.2 Testing Procedures  
+4.2.1 Dataset Description  
+The system was evaluated over a wide range of images: daylight photographs with visible 
+plates, nighttime shots with artificial lighting, high-glare situations (sun reflections, headlights), 
+motion-blurred frames simulating vehicle movement, rainy day shot s, and foggy conditions 
+with reduced visibility. Total test samples: 50+ diverse images. Plate types are primarily 
+Pakistani license plates in RND-XXXX format.  
+4.2.2 Testing Methodology  
+Unit Testing:   \n===== PAGE 30 =====\n  
+Page 30    
+• YOLO detection isolated and tested on 20 images for precision and recall.  
+• Preprocessing pipeline applied to 10 degraded plate crops to assess enhancement 
+quality.  
+• yolov8n evaluated on 10 preprocessed plates with character -by-character accuracy 
+measurement.  
+• Vehicle CNN tested on 15 full vehicle images with top-3 inspection.  
+Integration Testing:   
+• Checked on 50 heterogeneous images with captured plate, yolov8n, vehicle type, and 
+authorization results per image.  
+Performance Testing:   
+• Measured inference time for each component and total processing time per image.  
+• Tested batch processing of 20+ images for scalability.  
+4.3 Results and Findings  
+4.3.1 YOLO Plate Detection Results  
+  
+\n===== PAGE 31 =====\n  
+Page 31    
+Figure 4.3.1 — Performance Metrics Heatmap  
+  
+Figure 4.3.1 — YOLO Number Plate Detection  
+  
+Figure 4.3.1 — Confusion Matrix  
+Key Findings:  
+• Near-perfect detection: F1 = 0.996, Precision = 1.0, Recall = 0.993 overall.  
+• Detection accuracy of 0.995 across all test conditions, insensitive to vehicle angles 
+and sizes.  
+• False Positives = 0.0 confirms the model rarely misclassifies non-plate objects.  
+\n===== PAGE 32 =====\n  
+Page 32    
+• 268 of 270 total samples correctly identified.  
+4.3.2 Preprocessing and yolov8n Results  
+ 
+Figure 4.3.2 — Number Plate Preprocessing  
+  
+Figure 4.3.2 — Number Plate Recognition  
+\n===== PAGE 33 =====\n  
+Page 33    
+Key Findings:  
+The preprocessing pipeline normalizes images, converts to grayscale, and applies CLAHE for 
+even lighting. Otsu thresholding and morphological closing increase character clarity and 
+reduce noise. The dual -yolov8n ensemble accurately reads alphanumeric characters from 
+preprocessed plates.  
+4.3.3 Vehicle Make/Model Classification Results  
+  
+Figure 4.3.3 — Vehicle Make/Model Heatmap  
+  
+\n===== PAGE 34 =====\n  
+Page 34    
+Figure 4.3.3 — EfficientNet Confusion Matrix  
+  
+Figure 4.3.3 — Test Result  
+Key Findings:  
+EfficientNet-B0 (96%) and ResNet18 (95%) both achieved high accuracy, precision, and 
+recall, with EfficientNet holding a slight edge. F1 -scores demonstrate strong handling of 
+dataset imbalances. Confusion matrices validate correct classification of most ve hicles with 
+minor misclassification among visually similar models.  
+4.3.4 Pipeline Results  
+  
+\n===== PAGE 35 =====\n  
+Page 35    
+Figure 4.3.4 — Pipeline Result 1  
+  
+Figure 4.3.4 — Pipeline Result 2  
+Table 4.3.4 — Pipeline Performance Results  
+  
+Table 4.3.4 — Result Table  
+Key Findings:  
+Each frame is processed in 150 –190 ms with most time spent on neural network inference. 
+The system correctly classifies vehicle make, model, and year while using bounding boxes for 
+precise license plate localization. Real -time authorization cross -references detected plates 
+against the database and successfully processes regional plate formats.  
+4.4 Web Dashboard Implementation  
+The FYP-1 web dashboard is developed in React as a software -only application. It reads 
+results from the YOLO/CNN pipeline — including license plate text, vehicle make and model, 
+authorization status, timestamps, and image snapshots — and stores these on disk with APIs 
+accessible by the frontend. The React frontend provides real -time updates on the live view 
+page, with detection and recognition result overlays. An authorization management page 
+allows instant registration of authorized vehicles.  
+The dashboard has been fully implemented and is ready for hardware integration in FYP -2. 
+Physical gate control integration is not yet included in the current phase.  
+\n===== PAGE 36 =====\n  
+Page 36    
+  
+Figure 4.4 — Web Application Frontend  
+     
+\n===== PAGE 37 =====\n  
+Page 37    
+CHAPTER 05 — Results and Discussion  
+5. Results and Discussion  
+This chapter presents a comprehensive evaluation of each module within the All -Weather 
+IRBased Smart Vehicle Gate Recognition System. The performance of the license plate 
+detection model, character recognition model, and vehicle make and model recognition 
+(VMMR) model are analyzed independently using quantitative metrics. Subsequently, the 
+integrated pipeline is evaluated under adverse weather conditions including fog and rain. All 
+metrics are extracted directly from training logs, validation outputs, and test-set evaluations of 
+the respective models.  
+5.1 License Plate Detection Results  
+The license plate detection module employs a YOLOv8 -Nano (YOLOv8n) model fine -tuned 
+on a custom dataset of Pakistani vehicle images. The lightweight nano variant was selected 
+to balance detection accuracy with inference speed.  
+5.1.1 Training Configuration  
+Table 5.1 — License Plate Detection: Training Configuration  
+Parameter  Value  
+Model Architecture  YOLOv8n (Nano)  
+Task  Object Detection  
+Number of Classes  1 (License Plate)  
+Input Image Size  380 × 380 pixels  
+Batch Size  32  
+Total Epochs  50  
+Warmup Epochs  3  
+Training Platform  Google Colab (Tesla T4 GPU)  
+5.1.2 Detection Performance  
+Table 5.2 — License Plate Detection: Performance Metrics  
+Metric  Value  
+Precision  98.50%  
+Recall  95.53%  
+mAP@50  98.07%  \n===== PAGE 38 =====\n  
+Page 38    
+mAP@50-95  70.73%  
+Min Box Loss (Train)  1.032  
+Min Cls Loss (Train)  0.384  
+Min Box Loss (Val)  1.067  
+Min Cls Loss (Val)  0.384  
+The precision of 98.50% indicates that virtually all detected bounding boxes correspond to 
+actual license plates, minimizing false alarms at the gate. The recall of 95.53% demonstrates 
+that the model identifies the vast majority of plates in test images. T he mAP@50 of 98.07% 
+confirms robust localization quality at the standard IoU threshold of 0.5 [12][14].  
+  
+Figure 5.1 — YOLOv8 License Plate Detection: Training and Validation Metrics Over 50 Epochs  
+As shown above, training and validation losses converge smoothly over 50 epochs with no 
+signs of overfitting. Box loss and classification loss stabilize in the later epochs while precision, 
+recall, and mAP curves show steady improvement.  
+\n===== PAGE 39 =====\n  
+Page 39    
+  
+Figure 5.2 — YOLOv8 License Plate Detection: Sample Detection on Pakistani Vehicle  
+  
+Figure 5.3 — YOLOv8 License Plate Detection: Confusion Matrix  
+The confusion matrix shows that out of 2,059 true plate instances, 1,986 were correctly 
+detected (True Positives) with only 73 missed plates (False Negatives) and 48 false detections 
+(False Positives). This confirms the model's high reliability for gate automation applications.  
+5.2 Character Recognition Results  
+The character recognition module identifies individual alphanumeric characters on the 
+cropped license plate region. This system employs a YOLOv8n object detection model trained 
+to detect and classify each character as a separate bounding box.  
+\n===== PAGE 40 =====\n  
+Page 40    
+5.2.1 Dataset Details  
+The character recognition dataset was sourced from Roboflow and consists of 1,235 
+annotated images in YOLOv8 format, resized to 512×512 pixels. The dataset contains 38 
+classes comprising digits 0 –9 and letters A –Z, along with two additional special classes  for 
+non-standard markings on certain Pakistani plates.  
+  
+Figure 5.4 — Character Recognition Dataset: Roboflow Interface Showing 1,235 Annotated 
+Plate Images  
+Table 5.3 — Character Recognition: Dataset Summary  
+Property  Value  
+Total Images  1,235  
+Image Size  512 × 512 pixels  
+Annotation Format  YOLOv8 (bounding box)  
+Number of Classes  38 (0–9, A–Z, YY, a)  
+Augmentation  None  
+Source  Roboflow  
+5.2.2 Training Configuration  
+Table 5.4 — Character Recognition: Training Configuration  
+Parameter  Value  
+Model Architecture  YOLOv8n (Nano)  
+Task  Object Detection  
+Number of Classes  38  

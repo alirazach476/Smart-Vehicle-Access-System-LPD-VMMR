@@ -1,0 +1,233 @@
+===CELL 0 code len 48===
+!pip install ultralytics opencv-python-headless
+
+===CELL 1 code len 61===
+from google.colab import drive
+drive.mount('/content/drive')
+
+===CELL 2 code len 421===
+import os
+import zipfile
+
+# Update this file name if your ZIP name is different in Drive
+zip_path = "/content/drive/MyDrive/License Plate Project.v1i.yolov8.zip"
+extract_path = "/content/lpr_dataset"
+
+if not os.path.exists(zip_path):
+    raise FileNotFoundError(f"ZIP file not found: {zip_path}")
+
+with zipfile.ZipFile(zip_path, "r") as zip_ref:
+    zip_ref.extractall(extract_path)
+
+print("Extracted at:", extract_path)
+
+===CELL 3 code len 74===
+for root, dirs, files in os.walk("/content/lpr_dataset"):
+    print(root)
+
+===CELL 4 code len 224===
+yaml = """
+path: /content/lpr_dataset
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 1
+names: ['plate']
+"""
+
+with open("/content/lpr.yaml", "w") as f:
+    f.write(yaml)
+
+print(open("/content/lpr.yaml").read())
+
+===CELL 5 code len 217===
+from ultralytics import YOLO
+
+model = YOLO("yolov8n.pt")  # use nano model
+
+model.train(
+    data="/content/lpr.yaml",
+    epochs=50,
+    imgsz=380,
+    batch=32,
+    name="lp_detector",
+    project="/content/runs"
+)
+
+===CELL 6 code len 198===
+from ultralytics import YOLO
+
+model = YOLO("/content/runs/lp_detector2/weights/best.pt")
+
+model.predict(
+    source="/content/lpr_dataset/test/images",
+    save=True,
+    imgsz=640,
+    conf=0.25
+)
+
+===CELL 7 code len 2593===
+!pip install seaborn -q
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+from ultralytics import YOLO
+
+# Load the trained model
+model = YOLO("/content/runs/lp_detector2/weights/best.pt")
+
+# Validate the model to get metrics
+results = model.val(data="/content/lpr.yaml", imgsz=640, conf=0.25)
+
+# Extract metrics from results
+metrics_dict = results.results_dict
+
+# Get the metrics (try different possible key formats)
+# For YOLO v8, metrics keys might vary
+precision = (metrics_dict.get('metrics/precision(B)', 0.0) or
+             metrics_dict.get('metrics/precision', 0.0) or
+             getattr(results, 'box', {}).get('p', 0.0) if hasattr(results, 'box') else 0.0)
+
+recall = (metrics_dict.get('metrics/recall(B)', 0.0) or
+          metrics_dict.get('metrics/recall', 0.0) or
+          getattr(results, 'box', {}).get('r', 0.0) if hasattr(results, 'box') else 0.0)
+
+f1_score = (metrics_dict.get('metrics/f1(B)', 0.0) or
+            metrics_dict.get('metrics/f1', 0.0) or
+            (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0.0)
+
+mAP50 = (metrics_dict.get('metrics/mAP50(B)', 0.0) or
+         metrics_dict.get('metrics/mAP50', 0.0) or
+         getattr(results, 'box', {}).get('map50', 0.0) if hasattr(results, 'box') else 0.0)
+
+# Use mAP50 as accuracy metric for object detection
+accuracy = mAP50
+
+# Calculate FPR (False Positive Rate) = FP / (FP + TN)
+# FPR ≈ 1 - precision (for detection tasks)
+fpr = 1 - precision if precision > 0 else 0.0
+
+# Create metrics dictionary
+metrics = {
+    'F1 Score': f1_score,
+    'Recall': recall,
+    'Accuracy': accuracy,
+    'Precision': precision,
+    'FPR': fpr
+}
+
+# Print metrics separately
+print("=" * 50)
+print("PERFORMANCE METRICS")
+print("=" * 50)
+for metric_name, metric_value in metrics.items():
+    print(f"{metric_name}: {metric_value:.4f}")
+print("=" * 50)
+
+# Create a heatmap
+metrics_array = np.array([[metrics['F1 Score'], metrics['Recall'], metrics['Accuracy'],
+                          metrics['Precision'], metrics['FPR']]])
+
+# Create figure and axis
+fig, ax = plt.subplots(figsize=(10, 2))
+
+# Create heatmap
+sns.heatmap(metrics_array,
+            annot=True,
+            fmt='.4f',
+            cmap='RdYlGn',
+            xticklabels=['F1 Score', 'Recall', 'Accuracy', 'Precision', 'FPR'],
+            yticklabels=['Metrics'],
+            cbar_kws={'label': 'Score'},
+            vmin=0,
+            vmax=1,
+            ax=ax)
+
+# Set title
+ax.set_title('Performance Metrics Heatmap', fontsize=14, fontweight='bold', pad=20)
+
+# Adjust layout
+plt.tight_layout()
+plt.show()
+
+===CELL 8 code len 1652===
+from google.colab import files
+from ultralytics import YOLO
+from PIL import Image
+import matplotlib.pyplot as plt
+import cv2
+
+# Load the trained model
+model = YOLO("/content/runs/lp_detector2/weights/best.pt")
+
+# Browse and upload a vehicle image
+print("Please select a vehicle image to test:")
+uploaded = files.upload()
+
+# Get the uploaded file name
+uploaded_file = list(uploaded.keys())[0]
+print(f"\nTesting image: {uploaded_file}")
+
+# Run prediction on the uploaded image
+results = model.predict(
+    source=uploaded_file,
+    save=True,
+    imgsz=640,
+    conf=0.25,
+    show_labels=True,
+    show_conf=True
+)
+
+# Display the result
+for result in results:
+    # Get the annotated image
+    annotated_img = result.plot()
+
+    # Convert BGR to RGB for matplotlib
+    annotated_img_rgb = cv2.cvtColor(annotated_img, cv2.COLOR_BGR2RGB)
+
+    # Display the image
+    plt.figure(figsize=(12, 8))
+    plt.imshow(annotated_img_rgb)
+    plt.axis('off')
+    plt.title(f'Detection Results: {uploaded_file}', fontsize=14, fontweight='bold')
+    plt.tight_layout()
+    plt.show()
+
+    # Print detection information
+    print("\n" + "=" * 50)
+    print("DETECTION RESULTS")
+    print("=" * 50)
+    if len(result.boxes) > 0:
+        for i, box in enumerate(result.boxes):
+            conf = box.conf[0].item()
+            cls = int(box.cls[0].item())
+            class_name = result.names[cls]
+            print(f"Detection {i+1}:")
+            print(f"  Class: {class_name}")
+            print(f"  Confidence: {conf:.4f}")
+            print(f"  Coordinates: {box.xyxy[0].tolist()}")
+    else:
+        print("No detections found in the image.")
+    print("=" * 50)
+
+===CELL 9 code len 429===
+import os
+import shutil
+from google.colab import files
+
+runs_dir = "/content/runs"
+zip_base = "/content/runs_backup"
+zip_file = f"{zip_base}.zip"
+
+if not os.path.exists(runs_dir):
+    raise FileNotFoundError(f"Runs folder not found: {runs_dir}")
+
+# Create a ZIP archive from the runs directory
+shutil.make_archive(zip_base, "zip", runs_dir)
+print(f"Created: {zip_file}")
+
+# Download ZIP to your computer
+files.download(zip_file)

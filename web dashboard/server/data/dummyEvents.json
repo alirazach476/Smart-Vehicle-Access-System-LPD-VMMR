@@ -1,0 +1,1002 @@
+[
+  {
+    "plate": "LEA-1001",
+    "make": "Chevrolet",
+    "model": "5 Series",
+    "confidence": 0.94,
+    "weather": "Mist",
+    "timestamp": "2025-10-18T00:59:52.885Z",
+    "image": "/samples/vehicle_1.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1002",
+    "make": "BMW",
+    "model": "F-150",
+    "confidence": 0.89,
+    "weather": "Haze",
+    "timestamp": "2025-10-29T04:32:52.885Z",
+    "image": "/samples/vehicle_2.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1003",
+    "make": "Volkswagen",
+    "model": "Focus",
+    "confidence": 0.93,
+    "weather": "Fog",
+    "timestamp": "2025-11-14T14:43:52.885Z",
+    "image": "/samples/vehicle_3.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1004",
+    "make": "Volvo",
+    "model": "Camry",
+    "confidence": 0.93,
+    "weather": "Mist",
+    "timestamp": "2025-11-06T23:23:52.885Z",
+    "image": "/samples/vehicle_4.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1005",
+    "make": "Hyundai",
+    "model": "Altima",
+    "confidence": 0.86,
+    "weather": "Rain",
+    "timestamp": "2025-11-09T08:53:52.885Z",
+    "image": "/samples/vehicle_5.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1006",
+    "make": "Ford",
+    "model": "3 Series",
+    "confidence": 0.96,
+    "weather": "Sunny",
+    "timestamp": "2025-10-24T18:31:52.885Z",
+    "image": "/samples/vehicle_6.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1007",
+    "make": "Ford",
+    "model": "Altima",
+    "confidence": 0.94,
+    "weather": "Haze",
+    "timestamp": "2025-11-13T07:16:52.885Z",
+    "image": "/samples/vehicle_7.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1008",
+    "make": "KIA",
+    "model": "C-Class",
+    "confidence": 0.9,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-29T01:33:52.885Z",
+    "image": "/samples/vehicle_8.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1009",
+    "make": "Suzuki",
+    "model": "Focus",
+    "confidence": 0.93,
+    "weather": "Rain",
+    "timestamp": "2025-10-24T00:30:52.885Z",
+    "image": "/samples/vehicle_9.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1010",
+    "make": "Volvo",
+    "model": "Swift",
+    "confidence": 0.92,
+    "weather": "Mist",
+    "timestamp": "2025-11-06T22:10:52.885Z",
+    "image": "/samples/vehicle_10.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1011",
+    "make": "Volvo",
+    "model": "CX-5",
+    "confidence": 0.98,
+    "weather": "Mist",
+    "timestamp": "2025-10-18T11:12:52.885Z",
+    "image": "/samples/vehicle_11.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1012",
+    "make": "Nissan",
+    "model": "Swift",
+    "confidence": 0.83,
+    "weather": "Haze",
+    "timestamp": "2025-11-02T23:26:52.885Z",
+    "image": "/samples/vehicle_12.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1013",
+    "make": "Honda",
+    "model": "Cruze",
+    "confidence": 0.84,
+    "weather": "Sunny",
+    "timestamp": "2025-10-27T01:29:52.885Z",
+    "image": "/samples/vehicle_13.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1014",
+    "make": "Honda",
+    "model": "CX-5",
+    "confidence": 0.92,
+    "weather": "Rain",
+    "timestamp": "2025-10-31T02:37:52.885Z",
+    "image": "/samples/vehicle_14.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1015",
+    "make": "Lexus",
+    "model": "Sorento",
+    "confidence": 0.88,
+    "weather": "Haze",
+    "timestamp": "2025-11-03T15:43:52.885Z",
+    "image": "/samples/vehicle_15.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1016",
+    "make": "KIA",
+    "model": "C-Class",
+    "confidence": 0.87,
+    "weather": "Haze",
+    "timestamp": "2025-10-28T13:09:52.885Z",
+    "image": "/samples/vehicle_16.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1017",
+    "make": "Mercedes",
+    "model": "3 Series",
+    "confidence": 0.86,
+    "weather": "Rain",
+    "timestamp": "2025-10-20T07:33:52.885Z",
+    "image": "/samples/vehicle_17.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1018",
+    "make": "Volvo",
+    "model": "5 Series",
+    "confidence": 0.89,
+    "weather": "Haze",
+    "timestamp": "2025-10-18T19:43:52.885Z",
+    "image": "/samples/vehicle_18.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1019",
+    "make": "Mercedes",
+    "model": "Camry",
+    "confidence": 0.87,
+    "weather": "Fog",
+    "timestamp": "2025-11-08T05:35:52.886Z",
+    "image": "/samples/vehicle_19.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1020",
+    "make": "Mazda",
+    "model": "Civic",
+    "confidence": 0.92,
+    "weather": "Mist",
+    "timestamp": "2025-11-01T06:21:52.886Z",
+    "image": "/samples/vehicle_20.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1021",
+    "make": "Volkswagen",
+    "model": "A4",
+    "confidence": 0.97,
+    "weather": "Fog",
+    "timestamp": "2025-11-16T00:09:52.886Z",
+    "image": "/samples/vehicle_21.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1022",
+    "make": "Toyota",
+    "model": "Cruze",
+    "confidence": 0.94,
+    "weather": "Fog",
+    "timestamp": "2025-11-03T09:43:52.886Z",
+    "image": "/samples/vehicle_22.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1023",
+    "make": "Lexus",
+    "model": "Sorento",
+    "confidence": 0.92,
+    "weather": "Haze",
+    "timestamp": "2025-10-29T03:28:52.886Z",
+    "image": "/samples/vehicle_23.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1024",
+    "make": "Volkswagen",
+    "model": "Swift",
+    "confidence": 0.97,
+    "weather": "Mist",
+    "timestamp": "2025-10-21T11:08:52.886Z",
+    "image": "/samples/vehicle_24.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1025",
+    "make": "Suzuki",
+    "model": "Sportage",
+    "confidence": 0.9,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-30T05:27:52.886Z",
+    "image": "/samples/vehicle_25.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1026",
+    "make": "Lexus",
+    "model": "Sportage",
+    "confidence": 0.92,
+    "weather": "Rain",
+    "timestamp": "2025-10-31T22:33:52.886Z",
+    "image": "/samples/vehicle_26.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1027",
+    "make": "Audi",
+    "model": "C-Class",
+    "confidence": 0.98,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-25T16:35:52.886Z",
+    "image": "/samples/vehicle_27.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1028",
+    "make": "Mazda",
+    "model": "Sentra",
+    "confidence": 0.94,
+    "weather": "Haze",
+    "timestamp": "2025-10-23T06:23:52.886Z",
+    "image": "/samples/vehicle_28.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1029",
+    "make": "Lexus",
+    "model": "Elantra",
+    "confidence": 0.86,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-22T01:27:52.886Z",
+    "image": "/samples/vehicle_29.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1030",
+    "make": "KIA",
+    "model": "XC60",
+    "confidence": 0.98,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-26T06:27:52.886Z",
+    "image": "/samples/vehicle_30.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1031",
+    "make": "Mazda",
+    "model": "ES350",
+    "confidence": 0.97,
+    "weather": "Cloudy",
+    "timestamp": "2025-11-15T07:33:52.886Z",
+    "image": "/samples/vehicle_31.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1032",
+    "make": "Audi",
+    "model": "Vitara",
+    "confidence": 0.89,
+    "weather": "Rain",
+    "timestamp": "2025-10-19T22:00:52.886Z",
+    "image": "/samples/vehicle_32.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1033",
+    "make": "Nissan",
+    "model": "CX-9",
+    "confidence": 0.95,
+    "weather": "Rain",
+    "timestamp": "2025-10-29T17:40:52.886Z",
+    "image": "/samples/vehicle_33.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1034",
+    "make": "Hyundai",
+    "model": "Elantra",
+    "confidence": 0.83,
+    "weather": "Sunny",
+    "timestamp": "2025-10-23T03:22:52.886Z",
+    "image": "/samples/vehicle_34.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1035",
+    "make": "Lexus",
+    "model": "Altima",
+    "confidence": 0.87,
+    "weather": "Rain",
+    "timestamp": "2025-11-06T14:31:52.886Z",
+    "image": "/samples/vehicle_35.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1036",
+    "make": "BMW",
+    "model": "Focus",
+    "confidence": 0.96,
+    "weather": "Rain",
+    "timestamp": "2025-10-29T23:32:52.886Z",
+    "image": "/samples/vehicle_36.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1037",
+    "make": "Honda",
+    "model": "C-Class",
+    "confidence": 0.88,
+    "weather": "Rain",
+    "timestamp": "2025-11-09T04:04:52.886Z",
+    "image": "/samples/vehicle_37.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1038",
+    "make": "Lexus",
+    "model": "Cruze",
+    "confidence": 0.84,
+    "weather": "Sunny",
+    "timestamp": "2025-10-28T15:03:52.886Z",
+    "image": "/samples/vehicle_38.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1039",
+    "make": "Chevrolet",
+    "model": "Sorento",
+    "confidence": 0.93,
+    "weather": "Mist",
+    "timestamp": "2025-11-08T17:56:52.886Z",
+    "image": "/samples/vehicle_39.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1040",
+    "make": "KIA",
+    "model": "F-150",
+    "confidence": 0.94,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-23T17:58:52.886Z",
+    "image": "/samples/vehicle_40.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1041",
+    "make": "Volvo",
+    "model": "Focus",
+    "confidence": 0.87,
+    "weather": "Mist",
+    "timestamp": "2025-11-02T20:41:52.886Z",
+    "image": "/samples/vehicle_41.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1042",
+    "make": "Lexus",
+    "model": "Focus",
+    "confidence": 0.87,
+    "weather": "Cloudy",
+    "timestamp": "2025-11-12T04:38:52.886Z",
+    "image": "/samples/vehicle_42.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1043",
+    "make": "Mercedes",
+    "model": "Swift",
+    "confidence": 0.92,
+    "weather": "Haze",
+    "timestamp": "2025-11-05T15:17:52.886Z",
+    "image": "/samples/vehicle_43.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1044",
+    "make": "Volkswagen",
+    "model": "Sportage",
+    "confidence": 0.83,
+    "weather": "Haze",
+    "timestamp": "2025-10-20T18:22:52.886Z",
+    "image": "/samples/vehicle_44.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1045",
+    "make": "Toyota",
+    "model": "Sorento",
+    "confidence": 0.89,
+    "weather": "Mist",
+    "timestamp": "2025-10-18T14:22:52.886Z",
+    "image": "/samples/vehicle_45.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1046",
+    "make": "Volvo",
+    "model": "Sonata",
+    "confidence": 0.95,
+    "weather": "Fog",
+    "timestamp": "2025-10-30T13:44:52.886Z",
+    "image": "/samples/vehicle_46.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1047",
+    "make": "Lexus",
+    "model": "F-150",
+    "confidence": 0.91,
+    "weather": "Haze",
+    "timestamp": "2025-11-04T16:13:52.886Z",
+    "image": "/samples/vehicle_47.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1048",
+    "make": "Chevrolet",
+    "model": "Altima",
+    "confidence": 0.97,
+    "weather": "Rain",
+    "timestamp": "2025-11-03T21:16:52.886Z",
+    "image": "/samples/vehicle_48.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1049",
+    "make": "Ford",
+    "model": "Cruze",
+    "confidence": 0.88,
+    "weather": "Rain",
+    "timestamp": "2025-11-01T14:00:52.886Z",
+    "image": "/samples/vehicle_49.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1050",
+    "make": "Volkswagen",
+    "model": "Sonata",
+    "confidence": 0.87,
+    "weather": "Rain",
+    "timestamp": "2025-11-09T12:23:52.886Z",
+    "image": "/samples/vehicle_50.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1051",
+    "make": "KIA",
+    "model": "Civic",
+    "confidence": 0.92,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-20T23:33:52.886Z",
+    "image": "/samples/vehicle_51.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1052",
+    "make": "Nissan",
+    "model": "Sentra",
+    "confidence": 0.95,
+    "weather": "Fog",
+    "timestamp": "2025-10-31T06:28:52.886Z",
+    "image": "/samples/vehicle_52.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1053",
+    "make": "Chevrolet",
+    "model": "XC60",
+    "confidence": 0.97,
+    "weather": "Sunny",
+    "timestamp": "2025-10-30T18:27:52.886Z",
+    "image": "/samples/vehicle_53.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1054",
+    "make": "Mercedes",
+    "model": "Camry",
+    "confidence": 0.87,
+    "weather": "Haze",
+    "timestamp": "2025-11-16T05:59:52.886Z",
+    "image": "/samples/vehicle_54.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1055",
+    "make": "Ford",
+    "model": "Cruze",
+    "confidence": 0.97,
+    "weather": "Mist",
+    "timestamp": "2025-10-26T17:15:52.886Z",
+    "image": "/samples/vehicle_55.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1056",
+    "make": "Toyota",
+    "model": "Camry",
+    "confidence": 0.96,
+    "weather": "Haze",
+    "timestamp": "2025-11-03T04:19:52.886Z",
+    "image": "/samples/vehicle_56.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1057",
+    "make": "KIA",
+    "model": "Focus",
+    "confidence": 0.85,
+    "weather": "Mist",
+    "timestamp": "2025-11-01T07:27:52.886Z",
+    "image": "/samples/vehicle_57.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1058",
+    "make": "Honda",
+    "model": "CX-5",
+    "confidence": 0.83,
+    "weather": "Haze",
+    "timestamp": "2025-11-15T16:35:52.886Z",
+    "image": "/samples/vehicle_58.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1059",
+    "make": "Hyundai",
+    "model": "XC60",
+    "confidence": 0.96,
+    "weather": "Haze",
+    "timestamp": "2025-10-31T18:41:52.886Z",
+    "image": "/samples/vehicle_59.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1060",
+    "make": "Mercedes",
+    "model": "Elantra",
+    "confidence": 0.82,
+    "weather": "Mist",
+    "timestamp": "2025-10-29T08:57:52.886Z",
+    "image": "/samples/vehicle_60.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1061",
+    "make": "Lexus",
+    "model": "CX-5",
+    "confidence": 0.85,
+    "weather": "Mist",
+    "timestamp": "2025-10-25T04:11:52.886Z",
+    "image": "/samples/vehicle_61.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1062",
+    "make": "Toyota",
+    "model": "Accord",
+    "confidence": 0.87,
+    "weather": "Rain",
+    "timestamp": "2025-11-04T19:08:52.886Z",
+    "image": "/samples/vehicle_62.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1063",
+    "make": "Mercedes",
+    "model": "Civic",
+    "confidence": 0.94,
+    "weather": "Sunny",
+    "timestamp": "2025-10-30T16:01:52.886Z",
+    "image": "/samples/vehicle_63.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1064",
+    "make": "Suzuki",
+    "model": "XC60",
+    "confidence": 0.97,
+    "weather": "Fog",
+    "timestamp": "2025-11-08T13:04:52.886Z",
+    "image": "/samples/vehicle_64.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1065",
+    "make": "Volkswagen",
+    "model": "E-Class",
+    "confidence": 0.83,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-24T05:36:52.886Z",
+    "image": "/samples/vehicle_65.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1066",
+    "make": "Toyota",
+    "model": "Elantra",
+    "confidence": 0.86,
+    "weather": "Rain",
+    "timestamp": "2025-11-15T04:56:52.886Z",
+    "image": "/samples/vehicle_66.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1067",
+    "make": "Nissan",
+    "model": "Vitara",
+    "confidence": 0.86,
+    "weather": "Cloudy",
+    "timestamp": "2025-11-14T05:07:52.886Z",
+    "image": "/samples/vehicle_67.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1068",
+    "make": "Volkswagen",
+    "model": "F-150",
+    "confidence": 0.86,
+    "weather": "Sunny",
+    "timestamp": "2025-11-04T11:55:52.886Z",
+    "image": "/samples/vehicle_68.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1069",
+    "make": "Mercedes",
+    "model": "Sonata",
+    "confidence": 0.92,
+    "weather": "Mist",
+    "timestamp": "2025-10-22T21:09:52.886Z",
+    "image": "/samples/vehicle_69.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1070",
+    "make": "Mazda",
+    "model": "Sportage",
+    "confidence": 0.83,
+    "weather": "Haze",
+    "timestamp": "2025-11-08T08:11:52.886Z",
+    "image": "/samples/vehicle_70.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1071",
+    "make": "Audi",
+    "model": "Vitara",
+    "confidence": 0.86,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-24T14:39:52.886Z",
+    "image": "/samples/vehicle_71.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1072",
+    "make": "Volvo",
+    "model": "C-Class",
+    "confidence": 0.83,
+    "weather": "Mist",
+    "timestamp": "2025-10-20T02:24:52.886Z",
+    "image": "/samples/vehicle_72.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1073",
+    "make": "Nissan",
+    "model": "Sorento",
+    "confidence": 0.9,
+    "weather": "Mist",
+    "timestamp": "2025-10-24T17:17:52.886Z",
+    "image": "/samples/vehicle_73.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1074",
+    "make": "Toyota",
+    "model": "3 Series",
+    "confidence": 0.9,
+    "weather": "Fog",
+    "timestamp": "2025-10-28T07:51:52.886Z",
+    "image": "/samples/vehicle_74.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1075",
+    "make": "Toyota",
+    "model": "E-Class",
+    "confidence": 0.9,
+    "weather": "Haze",
+    "timestamp": "2025-10-21T10:32:52.886Z",
+    "image": "/samples/vehicle_75.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1076",
+    "make": "Ford",
+    "model": "ES350",
+    "confidence": 0.95,
+    "weather": "Haze",
+    "timestamp": "2025-11-11T23:41:52.886Z",
+    "image": "/samples/vehicle_76.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1077",
+    "make": "Hyundai",
+    "model": "Vitara",
+    "confidence": 0.86,
+    "weather": "Mist",
+    "timestamp": "2025-10-25T11:12:52.886Z",
+    "image": "/samples/vehicle_77.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1078",
+    "make": "Toyota",
+    "model": "Golf",
+    "confidence": 0.88,
+    "weather": "Rain",
+    "timestamp": "2025-10-26T04:36:52.886Z",
+    "image": "/samples/vehicle_78.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1079",
+    "make": "Hyundai",
+    "model": "A4",
+    "confidence": 0.88,
+    "weather": "Haze",
+    "timestamp": "2025-11-07T06:51:52.886Z",
+    "image": "/samples/vehicle_79.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1080",
+    "make": "Chevrolet",
+    "model": "E-Class",
+    "confidence": 0.9,
+    "weather": "Fog",
+    "timestamp": "2025-10-24T13:39:52.886Z",
+    "image": "/samples/vehicle_80.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1081",
+    "make": "Volvo",
+    "model": "CX-9",
+    "confidence": 0.86,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-28T05:16:52.886Z",
+    "image": "/samples/vehicle_81.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1082",
+    "make": "Audi",
+    "model": "Sentra",
+    "confidence": 0.82,
+    "weather": "Sunny",
+    "timestamp": "2025-11-05T20:26:52.886Z",
+    "image": "/samples/vehicle_82.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1083",
+    "make": "Mazda",
+    "model": "CX-5",
+    "confidence": 0.89,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-27T10:21:52.886Z",
+    "image": "/samples/vehicle_83.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1084",
+    "make": "Lexus",
+    "model": "Focus",
+    "confidence": 0.95,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-22T15:12:52.886Z",
+    "image": "/samples/vehicle_84.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1085",
+    "make": "Toyota",
+    "model": "Civic",
+    "confidence": 0.92,
+    "weather": "Haze",
+    "timestamp": "2025-10-18T02:54:52.886Z",
+    "image": "/samples/vehicle_85.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1086",
+    "make": "Hyundai",
+    "model": "A4",
+    "confidence": 0.9,
+    "weather": "Haze",
+    "timestamp": "2025-10-26T00:47:52.886Z",
+    "image": "/samples/vehicle_86.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1087",
+    "make": "KIA",
+    "model": "XC60",
+    "confidence": 0.95,
+    "weather": "Cloudy",
+    "timestamp": "2025-11-06T00:09:52.886Z",
+    "image": "/samples/vehicle_87.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1088",
+    "make": "Lexus",
+    "model": "XC60",
+    "confidence": 0.94,
+    "weather": "Sunny",
+    "timestamp": "2025-10-31T05:26:52.886Z",
+    "image": "/samples/vehicle_88.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1089",
+    "make": "Mercedes",
+    "model": "Sorento",
+    "confidence": 0.97,
+    "weather": "Fog",
+    "timestamp": "2025-10-30T09:25:52.886Z",
+    "image": "/samples/vehicle_89.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1090",
+    "make": "Hyundai",
+    "model": "CX-5",
+    "confidence": 0.93,
+    "weather": "Haze",
+    "timestamp": "2025-11-09T14:25:52.886Z",
+    "image": "/samples/vehicle_90.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1091",
+    "make": "Volvo",
+    "model": "Sonata",
+    "confidence": 0.98,
+    "weather": "Rain",
+    "timestamp": "2025-10-25T11:23:52.886Z",
+    "image": "/samples/vehicle_91.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1092",
+    "make": "Toyota",
+    "model": "CX-9",
+    "confidence": 0.83,
+    "weather": "Sunny",
+    "timestamp": "2025-10-25T17:02:52.886Z",
+    "image": "/samples/vehicle_92.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1093",
+    "make": "Suzuki",
+    "model": "Sportage",
+    "confidence": 0.9,
+    "weather": "Haze",
+    "timestamp": "2025-11-14T12:42:52.886Z",
+    "image": "/samples/vehicle_93.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1094",
+    "make": "Volkswagen",
+    "model": "Sorento",
+    "confidence": 0.9,
+    "weather": "Fog",
+    "timestamp": "2025-11-03T07:28:52.886Z",
+    "image": "/samples/vehicle_94.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1095",
+    "make": "Mercedes",
+    "model": "C-Class",
+    "confidence": 0.91,
+    "weather": "Cloudy",
+    "timestamp": "2025-11-16T07:06:52.886Z",
+    "image": "/samples/vehicle_95.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1096",
+    "make": "Audi",
+    "model": "Accord",
+    "confidence": 0.95,
+    "weather": "Mist",
+    "timestamp": "2025-11-06T07:14:52.886Z",
+    "image": "/samples/vehicle_96.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1097",
+    "make": "KIA",
+    "model": "3 Series",
+    "confidence": 0.95,
+    "weather": "Haze",
+    "timestamp": "2025-10-21T10:49:52.886Z",
+    "image": "/samples/vehicle_97.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1098",
+    "make": "Chevrolet",
+    "model": "Focus",
+    "confidence": 0.82,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-28T09:07:52.886Z",
+    "image": "/samples/vehicle_98.jpg",
+    "status": "Allowed"
+  },
+  {
+    "plate": "LEA-1099",
+    "make": "Volkswagen",
+    "model": "A4",
+    "confidence": 0.85,
+    "weather": "Cloudy",
+    "timestamp": "2025-10-24T19:05:52.886Z",
+    "image": "/samples/vehicle_99.jpg",
+    "status": "Denied"
+  },
+  {
+    "plate": "LEA-1100",
+    "make": "Toyota",
+    "model": "3 Series",
+    "confidence": 0.85,
+    "weather": "Mist",
+    "timestamp": "2025-10-18T16:53:52.886Z",
+    "image": "/samples/vehicle_100.jpg",
+    "status": "Denied"
+  }
+]

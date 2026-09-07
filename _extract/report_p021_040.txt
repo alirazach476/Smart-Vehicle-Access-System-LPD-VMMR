@@ -1,0 +1,536 @@
+\n===== PAGE 21 =====\n 
+7    
+    
+2. Literature Review          
+Main technologies and research areas of Automated License Plate Recognition (ALPR), Vehicle 
+Make and Model Recognition (VMMR) and intelligent vehicle access control systems are 
+discussed in this chapter. It provides an overview of the up-to-date techniques in the field of object 
+detection,    
+YOLO based models, image enhancement techniques and vehicle classification models. An 
+analysis on the existing commercial and academic solutions is also presented which indicates the 
+gaps on the research space and justifies the design decisions taken in the proposed system.          
+2.1 Related Technologies          
+Vehicle authentication and Gate access is proposed to be automated using recent computer vision 
+and deep learning techniques. The YOLO based localization model is employed to rapidly and 
+accurately localize the license plates and a separate YOLO Character and Digit Detection model 
+is employed to detect the alphanumeric information from the localized license plates. In order to 
+enhance the recognition performance under harsh environmental conditions, a number of image 
+enhancement techniques are used prior to  inference. In addition, a deep learning vehicle 
+classification model is added to give an extra verification layer which identifies the make and 
+model of the vehicle.          
+2.1.1 Object Detection Networks          
+Object detection is a basic part of the modern computer vision systems. In this context, the YOLO 
+(You Only Look Once) family of approaches have become popular due to the ability of localising 
+and performing classification in a single forward pass through the network. Unlike traditional two-
+stage detectors which propose regions and classify them afterwards, YOLO directly outputs the 
+location and category of an object from the input image.    
+Since its inception, YOLO has come a long way, and there are notable improvements in the feature 
+extraction, detection accuracy, and efficiency of YOLOv8. These properties make YOLO 
+particularly useful in applications such as licence plate recognition wher e the plates are likely to 
+be a relatively small portion of the image. YOLO is a multi -scale feature learning model which 
+can detect license plate robustly at different scale, view and environment with real -time 
+performance.          
+2.1.2 Character Recognition Approaches        
+Character recognition is one of the most crucial processes of any ALPR system. Generally, two 
+main approaches are used for textual information extraction of a license plate.    
+       
+Classical OCR Methods    
+In most of the traditional Optical Character Recognition (OCR) systems, character segmentation 
+and feature based classification are followed. These techniques are suitable for images containing 
+well separated and aligned text. They are however poor in perf ormance on non -standard fonts, \n===== PAGE 22 =====\n 
+8    
+    
+distorted images, poor lighting and the distances between characters, which are common in the 
+real world traffic scenarios.    
+Deep Learning-Based Recognition    
+With emergence of deep learning techniques, character recognition have been significantly 
+improved in recent times. The proposed system will employ the YOLO Character and Digit 
+Detection model which will directly detect individual character and digits from  the license plate 
+image. The characters identified are then sorted based on their spatial information to get the 
+complete sequence of the license plate. This detection based method has shown to be more tolerant 
+of blur, low resolution, partial occlusion a nd illumination changes than are conventional OCR 
+techniques.          
+The enhancement and pre-processing of images.          
+Outdoor scenes come with a host of imaging issues, such as noise, motion blur, uneven 
+illumination, glare, and bad weather. To overcome these problems, several pre -processing 
+methods are used prior to the detection and recognition processes.    
+• Noise Reduction: Bilateral Filtering and NonLocal Means are applied to reduce noise 
+without compromising on important edges.    
+• Contrast Enhancement: Using the Contrast Limited Adaptive Histogram Equalization 
+(CLAHE) makes it easier to see in low-light and glare situations and reduces the artifacts.    
+• Detail Enhancement: Morphological processing and Edge Enhancing techniques enhance 
+the characters of the license plate to make them more distinguishable.   
+• and their background.    
+• Image Sharpening: Sharpening filter like Laplacian based filter enhances the readability 
+by sharpening the character boundaries while not too much enhancing the noise.       
+    
+Recognizing Vehicle Make and Model (VMMR)          
+Vehicle Make and Model Recognition is a fine -grained image classification task, where the 
+difference between the similar class needs to be determined out. The current way of tackling this 
+challenge is the Deep Convolutional Neural Networks (CNNs) that can learn discriminative visual 
+features automatically.    
+ResNet18    
+ResNet18 is a residual network (ResNet) which uses residual learning and skip connections to aid 
+the training of deep neural networks. These architectural features help to alleviate optimization 
+challenges and enhance the classification performance. The mo del has a relatively medium -low 
+computational requirements that can be used to identify common vehicle classes.    
+EfficientNet-B0    
+EfficientNet-B0 is an efficient balance of performance and accuracy by compound scaling of the 
+network depth, width, and resolution. In conjunction with data augmentation and transfer learning, 
+it yields a high performance over different vehicle poses, lighting conditions and occlusion rates. 
+It is also light, and thus can be deployed on edge-computing platforms.          
+The current systems are briefly described below:          \n===== PAGE 23 =====\n 
+9    
+    
+2.2.1 Commercial ALPR Systems          
+Automated License Plate Recognition (ALPR) is now widely adopted by commercial applications 
+in the field of traffic monitoring, toll collection and parking management. Usually systems in the 
+commercial market have a high recognition rate in a controlled en vironment and can include 
+integrated management features. But, some are hardware -dependent or require cloud 
+infrastructure for deployment, which can reduce flexibility and contribute to deployment costs 
+and their performance may suffer in harsh weather.          
+2.2.2 Academic ALPR Research (2023–2025)          
+In the recent studies, there is attempt to improve the accuracy and robustness of the recognition 
+under real world conditions.    
+YOLOv5 with OCR based recognition is combined, which is efficient but the performance is 
+insufficient in the low-light condition –Thapliyal et al. (2023).    
+Li et al. (2023): suggested a segmentation-based framework with CNN recognition modules, and 
+it can enhance the detection performance in a complicated scene and is sensitive to severe weather 
+effects.    
+Agarwal et al. (2024): Combined YOLO with transformer -based models to allow for the 
+recognition of plates in a flexible manner, which added complexity to the computation.    
+To improve the blurred and weathered image recognition, Chen et al. (2024) suggested image 
+enhancement techniques.    
+Semihomemade et al. (2025) introduced a modified ALPR system featuring vehicle recognition 
+modules that enhance vehicle verification through multiple factors, thereby boosting the system's 
+security capabilities.          
+Literature review on the subject revealed that there are no such studies yet.          
+While there have been some good advances in studies of ALPR and VMMR, there are also some 
+challenges which have yet to be addressed.    
+1.  Environmental Sensitivity: Performance in recognition can drop significantly when affected 
+by fog, rain, high reflected light and low light levels.    
+2. Single-Factor Authentication: Certain systems rely on just license plate verification, which 
+may be vulnerable to fake or duplicate license plates.    
+3. Computational Demands: Highly performance detection and tracking model may require 
+a lot of computational resources that may hinder the deployment in low cost hardware.    
+4. Limited System integration – a lot of literature is of individual recognition components and 
+not full Vehicle access control solutions.    
+5. Dataset Generalization Issues: Some dataset are publicly available with a major contribution 
+of the European, North American or Chinese vehicle and license plate formats, which limits the 
+adaptability to the traffic environment in South Asia..             
+    \n===== PAGE 24 =====\n 
+10    
+    
+ 
+Table 2.3 — Literature Review Summary         
+   
+    
+ 
+A comparative study of research studies reviewed in literature is given in Table 2.3. It provides a 
+brief overview of the main features of each study, including methodology, data sources, 
+performance measures, and limitations, as indicated by the authors. This comparison will help to 
+identify the shortcomings and strengths of the existing vehicle recognition and access control 
+techniques. As shown in the table, most of the previous research has been targeted on either LPR 
+or vehicle classification, and few work has been done on combining these two technologies into 
+a single verification system. It also shows that there are challenges like limited real -time 
+performance, reliance on cloud processing, limited datasets, and a lack of security measures. From 
+these observations, the identified research gap is the development of the proposed system that is 
+a hybrid system of dual verification where dual verification is done using automated vehicle make-
+model classification and license plate recognition coupled with edge computing for providing 
+accurate, secure, efficient and real-time automated vehicle access control..    
+       
+    
+    
+    
+\n===== PAGE 25 =====\n 
+11    
+    
+    
+    
+       
+    
+       
+       
+       
+    
+       
+    
+    
+ 
+ 
+ 
+ 
+                                                       CHAPTER 03    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+ 
+ 
+ 
+ \n===== PAGE 26 =====\n 
+12    
+    
+ 
+ 
+3. Modeling and Simulation          
+The chapter introduces the modeling, designing and simulation of the proposed Intelligent Vehicle 
+Gate Recognition System. To validate the proposed architecture and assess it with real -world 
+vehicle access scenarios, a prototype implementation was developed. The automated gate access 
+decision is based on the combination of License Plate Recognition (LPR), V ehicle Make and 
+Model Recognition (VMM), Weather-aware image enhancement, and authorization systems.          
+3.1 Conceptual Framework          
+The idea is to introduce a multi -stage computer vision and artificial intelligence system for 
+automated vehicle verification. The process starts with the acquisition of the image and then 
+followed by the weather -aware enhancement, license plate localizatio n, character recognition, 
+vehicle classification, and authorization verification. Each of the processing stages is a standalone 
+module and plays a role in a common decision making mechanism. The modular design adds to 
+maintainability, scalability, and adju stability to different weather, including fog, rain, and low -
+light.          
+3.2 High Level Design          
+3.2.1 Block Diagram          
+The general system architecture is edge-to-cloud based, and is deployed on Orange Pi 5 Pro with 
+cloud monitoring on Vercel. The three trained models (YOLOv8n for license plate detection, 
+YOLOv8n for character and digit recognition (38 classes) and EfficientNet-B4 for vehicle make 
+and model recognition (245 classes) as well as the registered vehicle database (vehicles.json) are 
+loaded at startup. The imagery of the vehicles captured is fed to the weatheraware pre-processing 
+module that processes the image fo r fog removal (Dark Channel Prior), rain removal (vertical 
+median filtering + inpainting) or night/low-light enhancement (CLAHE + gamma), depending on 
+scene conditions. The improved image is then handed over to the AI inference step, which involves 
+three models: EfficientNet-B4 for classifying the entire image of the vehicle and identifying the 
+predicted make and model, YOLOv8n for the localization of the License Plate area and YOLOv8n 
+for detecting individual characters on the cropped license plate and arr anging them from left to 
+right in the format of a Pakistani license plate (e.g., ABC-1234). The text on the plate and vehicle 
+identity is detected and sent to the authorization engine for a dual -modality comparison to the 
+database (allow, deny or temporary access rules) and return of a final allow/deny decision.   
+         \n===== PAGE 27 =====\n 
+13    
+    
+    
+                                                                 Figure 3.2.1: High-Level Block Diagram    
+\n===== PAGE 28 =====\n 
+14    
+    
+3.2.2 Flow Diagram          
+When the image of a vehicle is obtained from the camera, the system operation is started. Firstly, 
+the license plate is detected using the YOLOv8 detection model. Detected part is cut out and 
+enhanced for better visuals. The extracted information of the pl ate is then sent to the YOLO 
+character and digit detection model, and from the complete vehicle image, the vehicle make and 
+model is detected using the EfficientNet-B4 model. The information obtained is matched with the 
+authorised information in the databa se. Based on the verification results, the system will either 
+make an authorized or unauthorized access decision, and it is instantly reflected on the monitoring 
+dashboard..         
+    
+Figure 3.2.2: Flowchart of the Proposed System          
+The flowchart shows the entire process of the system, from image acquisition to the final decision 
+for access control. It also features a dual -verification system which involves license plate 
+recognition and vehicle recognition, this is for security purposes.     
+\n===== PAGE 29 =====\n 
+15    
+    
+3.2.3 Performance          
+The system is designed to provide reliable recognition performance and yet be fast enough to be 
+used for gate automation. The desired goals are roughly 85% detection rate for license plates, 90% 
+detection rate for vehicle classes and less than 3 seconds processing time on standard computing 
+hardware. Performance evaluation is based on the detection accuracy, recognition consistency, 
+effectiveness of the pre-processing, reliability of the classification and system response time.          
+3.2.2 Flow Diagram          
+In order to be easy to implement and maintain, the complete solution is broken down into several 
+functional subsystems. Each of the subsystems implements a particular operation in the vehicle 
+recognition and access control chain.          
+3.3.1 List of Subsystems          
+Image Acquisition Subsystem: This subsystem is responsible for acquiring the images from the 
+vehicles through a camera (USB 1080p) mounted on the Orange Pi 5 Pro. It can be used to monitor 
+gates in real -time or to process images stored on a computer or video frames extracted from a 
+video.    
+Weather-Aware Preprocessing Subsystem: Environmental factors like clear weather, fog, rain 
+and nighttime scenes are analysed by the preprocessing subsystems. Depending on the condition 
+detected, adaptive enhancement techniques are used to enhance image quality prior to AI 
+inference. These include Dark Channel Prior for fog removal, filtering for rain suppression and 
+CLAHE, gamma correction for low light.    
+License Plate Detection Subsystem: License Plate Localization is done using YOLOv8n model 
+trained specifically for license plate detection. The model detects plates in the images of the 
+vehicles and returns a list of bound boxes along with confidence scores.    
+Character and Digit Recognition Subsystem: A second YOLOv8n model trained on 38 
+alphanumeric classes (digits and uppercase English letters) is used in this module. The characters 
+are then sorted based on their spatial position, to obtain the entire sequence of characters for the 
+license plate.    \n===== PAGE 30 =====\n 
+16    
+    
+Vehicle Classification Subsystem: A fine-tuned EfficientNet-B4 network is used for the vehicle 
+make and model recognition. The model is designed to classify vehicle type from the whole image 
+of the vehicle and also to provide the confidence score for the classification results.    
+Edge Deployment Subsystem: All AI models and the pre-processing operations run in the Orange 
+Pi 5 Pro. This edge-computing approach removes reliance on cloud inference and allows for quick 
+decision making with processing times typically less than the specified system requirement.    
+Cloud Synchronization Subsystem: Recognition results are securely sent to the cloud server as 
+a structured data object. The information uploaded is plate text, vehicle identity, confidence 
+values, environmental conditions, timestamps, and annotated images.    
+Authorization and Gate Control Subsystem: The authorization module checks the information 
+of vehicles detected with the information stored in the database. Access control decisions are made 
+based on pre-defined allow, deny and temporary entry rules. The subsystems decide whether or 
+not to keep the gate shut or allow the vehicles in.    
+Web Dashboard and Logging Subsystem: Web based monitoring interface is created to monitor 
+all the activities pertaining to the vehicle recognition in a centralized manner in real -time. The 
+interface shows live recognition events as they happen, and administrators can immediately see 
+recognitions and the details, including the make/name of the detected vehicle, the registration 
+number, the time of the recognition and the confidence score. This real-time visualization allows 
+quick monitoring and immediate response to any suspicious or unauthorised vehicle activities.    
+Apart from live monitoring, the system also offers a complete vehicle registration management 
+module, which enables the administrator to register, update, delete and manage authorized 
+vehicles with an easy to use and intuitive interface. This helps to ease the management of such a 
+database and maintain accurate and current vehicle information.    
+The interface also offers an event history tracking tool whereby all past vehicle events detected 
+are stored in an organized database. Users can search, filter and view previous records based on 
+various criteria such as Date, Time, Vehicle Registration Number or Recognition Status. This will 
+be very helpful for investigations, reporting and performance evaluation.    
+    
+    \n===== PAGE 31 =====\n 
+17    
+    
+    
+          3.3.2 Flowchart of Subsystems       
+   
+    
+Figure 3.3.1: Subsystem Diagram        
+The subsystem diagram depicts the relationship between the key functional components and the 
+flow of information through the recognition, verification and monitoring processes. When the high 
+level design has been completed, the next step is to select the components and to complete the low 
+level design. Each of the selected software and hardware components for system implementation 
+is described in this section. The selection of the components was based on their performance, 
+compatibility, availability, deployment needs, and cost efficiency.            
+3.4.1 Image Acquisition — USB CAMERA is an 
+application that can capture images from a USB camera.          
+The main image acquisition device is a Full HD USB camera. It is installed at the entry point of 
+the gate and can take pictures of vehicles under various lighting conditions and then send them to 
+the processing unit for analysis. Software -based image enhan cement techniques, not dedicated 
+illumination hardware, are used to enhance night time visibility.          
+\n===== PAGE 32 =====\n 
+18    
+    
+3.4.2 This is a tutorial for training a YOLOv8 detection 
+model to detect license plates in images.          
+YOLOv8 detection framework is chosen, since it can complete high-speed object localization and 
+high detection accuracy. It is a single stage system or device that can be operated efficiently in 
+real-time vehicle access applications.          
+3.4.3 Pre-processing of images — OpenCV Image 
+Processing Library          
+The image enhancement functionality needed to increase the quality of the images prior to 
+recognition is offered by OpenCV . Preprocessing operations involved are contrast enhancement, 
+low-light correction, fog removal and rain reduction depending on the weather condition detected.          
+YOLO — Character and Digit Detection: The image 
+below shows the output of running YOLO on the test 
+image.          
+Character recognition is done with a special YOLOv8 model, which is trained to recognize the 
+characters separately. Detection -based method makes it more tolerant of skewed text, font 
+variations, and partially obscured characters.          
+3.4.5 Vehicle Classification — EfficientNet-B4          
+In this study, EfficientNet-B4 was chosen as it provides a good compromise between classification 
+performance and cost. The experimental evaluation showed that recognition performance was 
+high, and that there was no problem with the inference speed for use on the edge.          
+3.4.6 Authorization — JSON-based Supabase          
+A structured database holds authorized vehicle information and can be accessed via the web 
+dashboard. Records contain license plate data, temporarily users and validity periods, and vehicle 
+identity and access permissions. Recognized vehicle information is  compared to stored 
+information to produce access decisions.          \n===== PAGE 33 =====\n 
+19    
+    
+3.4.7 Orange Pi 5 is a Embedded Processing device.          
+The Orange Pi 5 Pro acts as the main edge computing device. It performs locally weather -aware 
+pre-processing, license plate detection, character recognition and vehicle classification. It is 
+capable of real-time image processing and has a secure communication to send results to the cloud 
+platform.          
+3.4.8 Web-Based Dashboard for User Interface          
+The dashboard offers an intuitive platform that allows for easy visualization of the system's 
+activity and control of registered vehicles. The operators can view the recognition result in real 
+time, get historical events, make manual overrides and set access permissions in one place.      
+    
+Figure 3.4 — Prototype Application Diagram    
+3.5 System Architecture and Module Interaction          
+The overall system architecture provides a high -level view of the interactions between all the 
+hardware and software elements in the automated vehicle verification and gate control system. It 
+specifies the relation between camera, edge computing device, recognition model, database, web 
+application and gate controlling mechanism. The architecture diagram visualizes the data flow 
+from image capturing of the vehicles to recognition, verification and decision of access to the gate. 
+It also identifies the relati onships and communication between different modules and between 
+edge devices and cloud services. This structured design provides for efficient data processing, 
+reliable communication, real-time decision-making, system scalability, and seamless integration 
+of all components, leading to secure and accurate vehicle access control...    
+\n===== PAGE 34 =====\n 
+20    
+    
+    
+                                             Figure 3.5 — System Architecture Diagram    
+\n===== PAGE 35 =====\n 
+21    
+    
+      
+Figure 3.5.1 — Class Diagram          
+The class diagram represents the software structure of the proposed system. It illustrates the 
+relationships among major software entities responsible for image acquisition, preprocessing, 
+recognition, authorization, and event management.      
+\n===== PAGE 36 =====\n 
+22    
+    
+   
+Figure 3.5.2 — ER Diagram    
+This is the Entity Relationship (ER) diagram that shows the logical structure of a database for the 
+proposed intelligent vehicle recognition and access control system. It establishes the relationships 
+among the entities of the main database, such as users, registered vehicles, recognition events, and 
+authorization records, allowing for efficient organization and management of the data. Each user 
+is allowed to register and manage several cars and each detected car will create a recognition event 
+with things like the license plate number, the car make and model, the confidence score, the 
+timestamp and the access decision. Users and vehicles both have authorization records that 
+identify whether or not a particular user is authorized to move a particular vehicle into the secured 
+area. This relational database design reduces data duplication, ensures data consistency and 
+integrity, and allows for rapid retrieval of data records in real-time verification process. Moreover, 
+since well-defined relationships are estab lished among all entities, the ER diagram will enable 
+secure event logging, historical record management, auditing and reporting. This relational 
+database architecture guarantees system performance, scalability, and efficient management of 
+vehicle access operations..    
+    
+    
+    
+    
+\n===== PAGE 37 =====\n 
+23    
+    
+    
+       
+          
+    
+          
+    
+    
+    
+    
+ 
+ 
+ 
+ 
+                                                         CHAPTER 04        \n===== PAGE 38 =====\n 
+24    
+    
+4. Implementation and Testing          
+. chapter Demonstrates the deployment of the proposed all-weather smart vehicle gate recognizing 
+system. It's a characterization of the development, integration and deployment of individual 
+software components into a fully operating pipeline. The chapter also highlights testing methods, 
+performance analysis, and experimental results to evaluate the accuracy, efficiency, and reliability 
+of the system under various environmental and operating conditions.          
+4.1 Software Implementation          
+The YOLOv8 model is used to detect license 
+plates.YOLOv8 is used to detect license plates.          
+The localization of vehicle license plates is done using the Ultralytics YOLOv8 object detection 
+framework. A vehicle dataset specifically for license plates has been used to fine-tune a YOLOv8-
+Nano (YOLOv8n) model. The images are scaled to 640 × 640 pixel s and then input into the 
+network in the inference stage. The detector can approximate the position of licence plate BBs, 
+and provide a confidence score. In order to avoid duplicate predictions by YOLOv8, Non -
+Maximum Suppression (NMS) is used to ensure that only the most reliable prediction is kept. The 
+acquired plate area is cut and handed over to the subsequent stages of the pre -processing and 
+character recognition.          
+4.1.2 Adaptive Image Preprocessing          
+Before character recognition the detected license plate regions are subjected to an adaptive image 
+enhancement process to increase the image quality and thus helps in recognition. The 
+preprocessing pipeline consists of several image processing operations s uch as noise reduction, 
+Contrast Limited Adaptive Histogram Equalization (CLAHE), global histogram equalization and 
+image sharpening. Such techniques enhance contrast and edge clarity, as well as minimize the 
+effect of the rain streaks, low light, motion b lur, reflection and haze in the atmosphere. The 
+preprocessing stage will facilitate the recognition stage in the downstream with the betterment of 
+character boundary and suppression of unwanted characters. The entire enhancement process with 
+the traditional CPU hardware currently takes 100-200 milliseconds per image of the plates.          
+4.1.3 The problem statement is related to License Plate 
+Text Recognition (LPTE).          
+A special YOLOv8n model for character and digit detection is used to extract license plate text. 
+The suggested method is not based on the traditional Optical Character Recognition (OCR) \n===== PAGE 39 =====\n 
+25    
+    
+procedures but each alphanumeric symbol is one target to be detected. The class label, confidence 
+score and bounding box location is given for each character detected. This network is trained to 
+identify 38 characters (0-9 and A-Z) and thus there is no need to use any external OCR engine to 
+recognize the characters of Pakistani license plate.          
+Known symbols once detected are arranged in ascending order by their x -coordinate. A 
+deterministic post processing module then arranges letters and digits in the anticipated format of 
+a Pakistani license -plate to create formatted output (e.g., ABC -1234). U nlike character 
+segmentation and template matching, the detection of the object itself makes it robust in case of 
+partially occluded, skewed, dirty and challenging environmental conditions. On the validation set, 
+the precision, recall, and mAP@0.5 are 98.9 9%, 96.88%, and 98.07%, respectively; this is a 
+sufficient level of character recognition accuracy for deployment on the Orange Pi edge platform.    
+4.1.4 The classification of the make and model of the 
+vehicle.          
+The EfficientNet-B4 Convolutional Neural Network (CNN) is used to identify vehicles. A custom 
+made fine grained dataset containing 245 categories of vehicles (both Pakistani market vehicles 
+and Japanese Domestic Market (JDM) vehicles) was used for training the classifier. This was done 
+by transferring the weights learned from ImageNet and changing the last layer to correspond to 
+the classes of the project - vehicles.    
+The used model was EfficientNet -B4, the selected model is efficient to give a trade off with 
+recognition accuracy and computation cost for an embedded model. The effectiveness of the 
+model was also evaluated on a held out test set of 17,254 images, with a Top-1 accuracy of 
+96.24%, Top-5 accuracy of 99.39% and a macro F1 -score of 96.18%. The result found in this 
+paper confirms the model for the classification of similar visually classes of vehicles, and also 
+confirms the dualverification access control syste m where the image of the vehicle is matched 
+with the recognized license plate before access decision.          
+4.1.5 Web-Based Dashboard for User Interface          
+The module which determines whether or not a vehicle can pass through the gate is called an 
+authorization module. The decision is made with reference to a database of registered license 
+plate/vehicle model combinations. Access will only be granted if the f ound plate number and 
+calculated vehicle type and model are in the database and a valid entry. If the license plate is right, 
+but the model of the vehicle is not a match with the one kept in the database, then it is suspected. \n===== PAGE 40 =====\n 
+26    
+    
+4.1.6 Visualization and Logging          
+To make the system more transparent and easy to monitor, visual annotations are added for each 
+image processed. These overlays include license plate boundaries detected, license plate text 
+recognized and confidence information along with the final authoriz ation result. In addition a 
+structured log entry is produced for every vehicle event. The log is used to store the time of the 
+incident, the license plate number detected, the make and model of the vehicle predicted, the 
+confidence levels, and the access d ecision made. These records offer a thorough audit trail that 
+can be evaluated for operational monitoring, troubleshooting, and security investigations.          
+4.2 Testing Procedures          
+4.2.1 Dataset Description          
+• To evaluate the proposed smart vehicle gate recognition system, a set of data with different 
+categories of vehicles, license plate formats, and under different environmental conditions 
+were used. The evaluation was focused on the performance of the individual models and 
+of the entire end-to-end pipeline in realistic deployments.    
+• The license plate detection module is trained and tested using the dataset of about 23,000 
+annotated vehicle images in YOLOv8 format. Data set consists of vehicles taken from 
+different view angles and distances in different lighting conditions, and license  plate is 
+manually annotated with a bounding box. These are images of a variety of real -world 
+outdoor settings that can be encountered at vehicle entry and exit points.    
+• For character and digit recognition, a special database of 1235 images of Pakistani license 
+plate was used. Each image was annotated on both the character and digit level with the 
+annotation format YOLOv8 allowing each letter and digit in the image to be a  separate 
+detection object. There are 38 classes (results are digits 0-9 and letters A-Z). The collected 
+samples are diversified in font style, plate color, image quality and environmental factors 
+to make the samples more robust.    
+• To test the vehicle make and model recognition a fine-grained vehicle dataset was created. 
+The data set includes both market cars sold in Pakistan and the Japanese Domestic Market 
+(JDM) cars which are available on the roads of Pakistan. The test set was a held out set of 
+17,254 images. The images have a lot of variation in background, occlusion, illumination, 
+viewpoint, etc., and the color of the vehicles.    
+• In addition to the model specific ones, qualitative end -to-end testing was conducted on 
+another set of images and video frames captured from the deployed Orange Pi camera 
+setup. For example, during the day with plenty of light, at night, during the rain wi th 
+running water, in foggy weather where there isn't a lot of visibility, and in real time shots 
+from live gate shows. Testing scenarios included all the various type of license plates as 
+per the usual practice in Pakistan, which are a maximum of three alp habetic characters 
+followed by 4 numeric digits (as in ABC-1234).    
